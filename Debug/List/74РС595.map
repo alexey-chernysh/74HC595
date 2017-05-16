@@ -1,6 +1,6 @@
 ###############################################################################
 #
-# IAR ELF Linker V2.20.1.176 for STM8                     20/Dec/2016  15:08:32
+# IAR ELF Linker V2.20.1.176 for STM8                     16/May/2017  12:17:30
 # Copyright 2010-2015 IAR Systems AB.
 #
 #    Output file  =  
@@ -68,47 +68,47 @@ __rt_version               = 4
   .vregs             uninit   0x000000    0xc  vregs.o [4]
                             - 0x00000c    0xc
 
-"P2":                                    0x26
-  P2-1                        0x00000c   0x26  <Init block>
+"P2":                                    0x2e
+  P2-1                        0x00000c   0x2e  <Init block>
     .near.data       inited   0x00000c    0x4  adc.o [1]
-    .near.data       inited   0x000010    0xe  serialLED.o [1]
-    .near.data       inited   0x00001e    0x1  serialLED.o [1]
-    .near.data       inited   0x00001f    0x1  serialLED.o [1]
-    .near.data       inited   0x000020    0x1  serialLED.o [1]
-    .near.data       inited   0x000021    0x1  serialLED.o [1]
-    .near.bss        inited   0x000022    0x1  adc.o [1]
-    .near.bss        inited   0x000023    0x4  adc.o [1]
-    .near.bss        inited   0x000027    0x1  encoder.o [1]
-    .near.bss        inited   0x000028    0x1  encoder.o [1]
-    .near.bss        inited   0x000029    0x1  encoder.o [1]
-    .near.bss        inited   0x00002a    0x2  encoder.o [1]
-    .near.bss        inited   0x00002c    0x1  serialLED.o [1]
-    .near.bss        inited   0x00002d    0x1  serialLED.o [1]
-    .near.bss        inited   0x00002e    0x2  serialLED.o [1]
-    .near.bss        inited   0x000030    0x1  serialLED.o [1]
-    .near.bss        inited   0x000031    0x1  serialLED.o [1]
-                            - 0x000032   0x26
+    .near.data       inited   0x000010    0x4  adc.o [1]
+    .near.data       inited   0x000014    0xe  serialLED.o [1]
+    .near.data       inited   0x000022    0x1  serialLED.o [1]
+    .near.data       inited   0x000023    0x1  serialLED.o [1]
+    .near.data       inited   0x000024    0x1  serialLED.o [1]
+    .near.data       inited   0x000025    0x1  serialLED.o [1]
+    .near.bss        inited   0x000026    0x1  adc.o [1]
+    .near.bss        inited   0x000027    0x4  adc.o [1]
+    .near.bss        inited   0x00002b    0x4  adc.o [1]
+    .near.bss        inited   0x00002f    0x1  encoder.o [1]
+    .near.bss        inited   0x000030    0x1  encoder.o [1]
+    .near.bss        inited   0x000031    0x1  encoder.o [1]
+    .near.bss        inited   0x000032    0x2  encoder.o [1]
+    .near.bss        inited   0x000034    0x1  serialLED.o [1]
+    .near.bss        inited   0x000035    0x1  serialLED.o [1]
+    .near.bss        inited   0x000036    0x2  serialLED.o [1]
+    .near.bss        inited   0x000038    0x1  serialLED.o [1]
+    .near.bss        inited   0x000039    0x1  serialLED.o [1]
+                            - 0x00003a   0x2e
 
 "A2":                                   0x100
   CSTACK                      0x000700  0x100  <Block>
     CSTACK           uninit   0x000700  0x100  <Block tail>
                             - 0x000800  0x100
 
-Absolute sections, part 1 of 19:          0x5
+Absolute sections, part 1 of 18:          0x9
   .near.noinit       uninit   0x005001    0x1  adc.o [1]
   .near.noinit       uninit   0x005002    0x1  adc.o [1]
   .near.noinit       uninit   0x005003    0x1  adc.o [1]
   .near.noinit       uninit   0x005004    0x1  adc.o [1]
   .near.noinit       uninit   0x005005    0x1  serialLED.o [1]
-                            - 0x005006    0x5
-
-Absolute sections, part 2 of 19:          0x3
+  .near.noinit       uninit   0x005006    0x1  adc.o [1]
   .near.noinit       uninit   0x005007    0x1  serialLED.o [1]
   .near.noinit       uninit   0x005008    0x1  serialLED.o [1]
   .near.noinit       uninit   0x005009    0x1  serialLED.o [1]
-                            - 0x00500a    0x3
+                            - 0x00500a    0x9
 
-Absolute sections, part 3 of 19:          0x6
+Absolute sections, part 2 of 18:          0x6
   .near.noinit       uninit   0x00500f    0x1  motor_control.o [1]
   .near.noinit       uninit   0x005010    0x1  encoder.o [1]
   .near.noinit       uninit   0x005011    0x1  motor_control.o [1]
@@ -117,67 +117,67 @@ Absolute sections, part 3 of 19:          0x6
   .near.noinit       uninit   0x005014    0x1  adc.o [1]
                             - 0x005015    0x6
 
-Absolute sections, part 4 of 19:          0x3
+Absolute sections, part 3 of 18:          0x3
   .near.noinit       uninit   0x005016    0x1  adc.o [1]
   .near.noinit       uninit   0x005017    0x1  adc.o [1]
   .near.noinit       uninit   0x005018    0x1  adc.o [1]
                             - 0x005019    0x3
 
-Absolute sections, part 5 of 19:          0x4
+Absolute sections, part 4 of 18:          0x4
   .near.noinit       uninit   0x00501a    0x1  adc.o [1]
   .near.noinit       uninit   0x00501b    0x1  adc.o [1]
   .near.noinit       uninit   0x00501c    0x1  adc.o [1]
   .near.noinit       uninit   0x00501d    0x1  adc.o [1]
                             - 0x00501e    0x4
 
-Absolute sections, part 6 of 19:          0x1
+Absolute sections, part 5 of 18:          0x1
   .near.noinit       uninit   0x00505f    0x1  eeprom.o [1]
                             - 0x005060    0x1
 
-Absolute sections, part 7 of 19:          0x1
+Absolute sections, part 6 of 18:          0x1
   .near.noinit       uninit   0x005064    0x1  eeprom.o [1]
                             - 0x005065    0x1
 
-Absolute sections, part 8 of 19:          0x1
+Absolute sections, part 7 of 18:          0x1
   .near.noinit       uninit   0x0050a0    0x1  encoder.o [1]
                             - 0x0050a1    0x1
 
-Absolute sections, part 9 of 19:          0x2
+Absolute sections, part 8 of 18:          0x2
   .near.noinit       uninit   0x0050c0    0x1  clock.o [1]
   .near.noinit       uninit   0x0050c1    0x1  clock.o [1]
                             - 0x0050c2    0x2
 
-Absolute sections, part 10 of 19:         0x4
+Absolute sections, part 9 of 18:          0x4
   .near.noinit       uninit   0x0050c4    0x1  clock.o [1]
   .near.noinit       uninit   0x0050c5    0x1  clock.o [1]
   .near.noinit       uninit   0x0050c6    0x1  clock.o [1]
   .near.noinit       uninit   0x0050c7    0x1  clock.o [1]
                             - 0x0050c8    0x4
 
-Absolute sections, part 11 of 19:         0x2
+Absolute sections, part 10 of 18:         0x2
   .near.noinit       uninit   0x0050c9    0x1  clock.o [1]
   .near.noinit       uninit   0x0050ca    0x1  clock.o [1]
                             - 0x0050cb    0x2
 
-Absolute sections, part 12 of 19:         0x2
+Absolute sections, part 11 of 18:         0x2
   .near.noinit       uninit   0x0050cc    0x1  clock.o [1]
   .near.noinit       uninit   0x0050cd    0x1  clock.o [1]
                             - 0x0050ce    0x2
 
-Absolute sections, part 13 of 19:         0x1
+Absolute sections, part 12 of 18:         0x1
   .near.noinit       uninit   0x005300    0x1  motor_control.o [1]
                             - 0x005301    0x1
 
-Absolute sections, part 14 of 19:         0x2
+Absolute sections, part 13 of 18:         0x2
   .near.noinit       uninit   0x005305    0x1  motor_control.o [1]
   .near.noinit       uninit   0x005306    0x1  motor_control.o [1]
                             - 0x005307    0x2
 
-Absolute sections, part 15 of 19:         0x1
+Absolute sections, part 14 of 18:         0x1
   .near.noinit       uninit   0x005308    0x1  motor_control.o [1]
                             - 0x005309    0x1
 
-Absolute sections, part 16 of 19:         0x7
+Absolute sections, part 15 of 18:         0x7
   .near.noinit       uninit   0x00530c    0x1  motor_control.o [1]
   .near.noinit       uninit   0x00530d    0x1  motor_control.o [1]
   .near.noinit       uninit   0x00530e    0x1  motor_control.o [1]
@@ -187,19 +187,19 @@ Absolute sections, part 16 of 19:         0x7
   .near.noinit       uninit   0x005312    0x1  motor_control.o [1]
                             - 0x005313    0x7
 
-Absolute sections, part 17 of 19:         0x3
+Absolute sections, part 16 of 18:         0x3
   .near.noinit       uninit   0x005320    0x1  serialLED.o [1]
   .near.noinit       uninit   0x005321    0x1  serialLED.o [1]
   .near.noinit       uninit   0x005322    0x1  serialLED.o [1]
                             - 0x005323    0x3
 
-Absolute sections, part 18 of 19:         0x3
+Absolute sections, part 17 of 18:         0x3
   .near.noinit       uninit   0x00532a    0x1  serialLED.o [1]
   .near.noinit       uninit   0x00532b    0x1  serialLED.o [1]
   .near.noinit       uninit   0x00532c    0x1  serialLED.o [1]
                             - 0x00532d    0x3
 
-Absolute sections, part 19 of 19:         0x5
+Absolute sections, part 18 of 18:         0x5
   .near.noinit       uninit   0x005400    0x1  adc.o [1]
   .near.noinit       uninit   0x005401    0x1  adc.o [1]
   .near.noinit       uninit   0x005402    0x1  adc.o [1]
@@ -212,51 +212,51 @@ Absolute sections, part 19 of 19:         0x5
     .intvec          const    0x008000   0x80  interrupt.o [4]
                             - 0x008080   0x80
 
-"P3":                                   0x87d
+"P3":                                   0x8b9
   .near_func.text    ro code  0x008080  0x108  serialLED.o [1]
-  .near_func.text    ro code  0x008188   0xba  long.o [4]
-  .near_func.text    ro code  0x008242   0x95  adc.o [1]
-  .near_func.text    ro code  0x0082d7   0x86  encoder.o [1]
-  .near_func.text    ro code  0x00835d   0x6f  encoder.o [1]
-  .near_func.text    ro code  0x0083cc   0x6d  adc.o [1]
-  .near_func.text    ro code  0x008439   0x6c  vreg_util.o [4]
-  .near_func.text    ro code  0x0084a5   0x65  motor_control.o [1]
-  .near_func.text    ro code  0x00850a   0x60  adc.o [1]
-  .near_func.text    ro code  0x00856a   0x5d  serialLED.o [1]
-  .near_func.text    ro code  0x0085c7   0x59  eeprom.o [1]
-  .near_func.text    ro code  0x008620   0x56  serialLED.o [1]
-  .near_func.text    ro code  0x008676   0x4b  encoder.o [1]
-  .near_func.text    ro code  0x0086c1   0x4a  motor_control.o [1]
-  .near_func.text    ro code  0x00870b   0x45  serialLED.o [1]
-  .near_func.text    ro code  0x008750   0x40  clock.o [1]
-  .near_func.text    ro code  0x008790   0x38  short.o [4]
-  .near_func.text    ro code  0x0087c8   0x28  init_small.o [4]
-  Initializer bytes  const    0x0087f0   0x26  <for P2-1>
-  .iar.init_table    const    0x008816    0xa  - Linker created -
-  .near_func.text    ro code  0x008820   0x1a  long_util.o [4]
-  .near_func.text    ro code  0x00883a   0x17  init.o [4]
-  .near_func.text    ro code  0x008851   0x15  eeprom.o [1]
-  .near_func.text    ro code  0x008866   0x14  adc.o [1]
-  .near_func.text    ro code  0x00887a   0x14  __dbg_xxexit.o [3]
-  .near_func.text    ro code  0x00888e   0x13  cstartup.o [4]
-  .near.rodata       const    0x0088a1   0x10  encoder.o [1]
-  .near_func.text    ro code  0x0088b1    0xf  main.o [1]
-  .near_func.text    ro code  0x0088c0    0xb  dc_util.o [4]
-  .near_func.text    ro code  0x0088cb    0x8  main.o [1]
-  .near_func.text    ro code  0x0088d3    0x5  adc.o [1]
-  .near_func.text    ro code  0x0088d8    0x5  char.o [4]
-  .near_func.text    ro code  0x0088dd    0x5  cexit.o [4]
-  .near_func.text    ro code  0x0088e2    0x4  adc.o [1]
-  .near_func.text    ro code  0x0088e6    0x4  encoder.o [1]
-  .near_func.text    ro code  0x0088ea    0x4  encoder.o [1]
-  .near_func.text    ro code  0x0088ee    0x3  interrupt.o [4]
-  .near_func.text    ro code  0x0088f1    0x3  low_level_init.o [4]
-  .near_func.text    ro code  0x0088f4    0x3  exit.o [4]
-  .near_func.text    ro code  0x0088f7    0x3  unhandled_exception.o [4]
-  .near.rodata       const    0x0088fa    0x1  adc.o [1]
-  .near.rodata       const    0x0088fb    0x1  adc.o [1]
-  .near_func.text    ro code  0x0088fc    0x1  __dbg_break.o [3]
-                            - 0x0088fd  0x87d
+  .near_func.text    ro code  0x008188   0xd9  adc.o [1]
+  .near_func.text    ro code  0x008261   0xba  long.o [4]
+  .near_func.text    ro code  0x00831b   0x86  encoder.o [1]
+  .near_func.text    ro code  0x0083a1   0x79  adc.o [1]
+  .near_func.text    ro code  0x00841a   0x6f  encoder.o [1]
+  .near_func.text    ro code  0x008489   0x6c  vreg_util.o [4]
+  .near_func.text    ro code  0x0084f5   0x65  motor_control.o [1]
+  .near_func.text    ro code  0x00855a   0x60  adc.o [1]
+  .near_func.text    ro code  0x0085ba   0x5d  serialLED.o [1]
+  .near_func.text    ro code  0x008617   0x59  eeprom.o [1]
+  .near_func.text    ro code  0x008670   0x56  serialLED.o [1]
+  .near_func.text    ro code  0x0086c6   0x4b  encoder.o [1]
+  .near_func.text    ro code  0x008711   0x45  serialLED.o [1]
+  .near_func.text    ro code  0x008756   0x40  clock.o [1]
+  .near_func.text    ro code  0x008796   0x38  short.o [4]
+  .near_func.text    ro code  0x0087ce   0x2e  motor_control.o [1]
+  Initializer bytes  const    0x0087fc   0x2e  <for P2-1>
+  .near_func.text    ro code  0x00882a   0x28  init_small.o [4]
+  .iar.init_table    const    0x008852    0xa  - Linker created -
+  .near_func.text    ro code  0x00885c   0x1a  long_util.o [4]
+  .near_func.text    ro code  0x008876   0x17  init.o [4]
+  .near_func.text    ro code  0x00888d   0x15  eeprom.o [1]
+  .near_func.text    ro code  0x0088a2   0x14  adc.o [1]
+  .near_func.text    ro code  0x0088b6   0x14  __dbg_xxexit.o [3]
+  .near_func.text    ro code  0x0088ca   0x13  cstartup.o [4]
+  .near.rodata       const    0x0088dd   0x10  encoder.o [1]
+  .near_func.text    ro code  0x0088ed    0xf  main.o [1]
+  .near_func.text    ro code  0x0088fc    0xb  dc_util.o [4]
+  .near_func.text    ro code  0x008907    0x8  main.o [1]
+  .near_func.text    ro code  0x00890f    0x5  adc.o [1]
+  .near_func.text    ro code  0x008914    0x5  char.o [4]
+  .near_func.text    ro code  0x008919    0x5  cexit.o [4]
+  .near_func.text    ro code  0x00891e    0x4  adc.o [1]
+  .near_func.text    ro code  0x008922    0x4  encoder.o [1]
+  .near_func.text    ro code  0x008926    0x4  encoder.o [1]
+  .near_func.text    ro code  0x00892a    0x3  interrupt.o [4]
+  .near_func.text    ro code  0x00892d    0x3  low_level_init.o [4]
+  .near_func.text    ro code  0x008930    0x3  exit.o [4]
+  .near_func.text    ro code  0x008933    0x3  unhandled_exception.o [4]
+  .near.rodata       const    0x008936    0x1  adc.o [1]
+  .near.rodata       const    0x008937    0x1  adc.o [1]
+  .near_func.text    ro code  0x008938    0x1  __dbg_break.o [3]
+                            - 0x008939  0x8b9
 
 
 *******************************************************************************
@@ -266,10 +266,10 @@ Absolute sections, part 19 of 19:         0x5
           Address   Size
           -------   ----
 Copy (__iar_copy_init2)
-    1 source range, total size 0x26:
-          0x0087f0  0x26
-    1 destination range, total size 0x26:
-          0x00000c  0x26
+    1 source range, total size 0x2e:
+          0x0087fc  0x2e
+    1 destination range, total size 0x2e:
+          0x00000c  0x2e
 
 
 
@@ -281,15 +281,15 @@ Copy (__iar_copy_init2)
                                                        (abs)
     ------                 -------  -------  -------  -------
 C:\Users\Sales\Documents\GitHub\74HC595\74HC595\Debug\Obj: [1]
-    adc.o                      383       11        9       17
+    adc.o                      463       19       17       18
     clock.o                     64                         10
     eeprom.o                   110                          2
     encoder.o                  328       21        5        2
     main.o                      23
-    motor_control.o            175                         15
+    motor_control.o            147                         15
     serialLED.o                512       24       24       10
     ---------------------------------------------------------
-    Total:                   1 595       56       38       56
+    Total:                   1 647       64       46       57
 
 command line: [2]
     ---------------------------------------------------------
@@ -322,7 +322,7 @@ dlstm8smn.a: [4]
 
     Linker created                       10      256
 -------------------------------------------------------------
-    Grand Total:             2 107      194      306       56
+    Grand Total:             2 159      202      314       57
 
 
 *******************************************************************************
@@ -331,8 +331,8 @@ dlstm8smn.a: [4]
 
 Entry                    Address   Size  Type      Object
 -----                    -------   ----  ----      ------
-.iar.init_table$$Base   0x008816          --   Gb  - Linker created -
-.iar.init_table$$Limit  0x008820          --   Gb  - Linker created -
+.iar.init_table$$Base   0x008852          --   Gb  - Linker created -
+.iar.init_table$$Limit  0x00885c          --   Gb  - Linker created -
 ?b0                     0x000000         Data  Gb  vregs.o [4]
 ?b1                     0x000001         Data  Gb  vregs.o [4]
 ?b10                    0x00000a         Data  Gb  vregs.o [4]
@@ -345,72 +345,72 @@ Entry                    Address   Size  Type      Object
 ?b7                     0x000007         Data  Gb  vregs.o [4]
 ?b8                     0x000008         Data  Gb  vregs.o [4]
 ?b9                     0x000009         Data  Gb  vregs.o [4]
-?dc32_px                0x0088c0         Code  Gb  dc_util.o [4]
-?dec32_0x_0x            0x00818d         Code  Gb  long.o [4]
-?dec32_l0_l0            0x008188         Code  Gb  long.o [4]
+?dc32_px                0x0088fc         Code  Gb  dc_util.o [4]
+?dec32_0x_0x            0x008266         Code  Gb  long.o [4]
+?dec32_l0_l0            0x008261         Code  Gb  long.o [4]
 ?e0                     0x000001         Data  Gb  vregs.o [4]
 ?e1                     0x000005         Data  Gb  vregs.o [4]
 ?e2                     0x000009         Data  Gb  vregs.o [4]
 ?l0                     0x000000         Data  Gb  vregs.o [4]
 ?l1                     0x000004         Data  Gb  vregs.o [4]
 ?l2                     0x000008         Data  Gb  vregs.o [4]
-?load32_0x_l0           0x00882c         Code  Gb  long_util.o [4]
-?load32_l0_0x           0x008820         Code  Gb  long_util.o [4]
-?mul32_l0_l0_0x         0x0081a4         Code  Gb  long.o [4]
-?mul32_l0_l0_dl         0x0081a1         Code  Gb  long.o [4]
-?mul32_l0_l0_l1         0x0081ad         Code  Gb  long.o [4]
-?pop_l0                 0x008487         Code  Gb  vreg_util.o [4]
-?pop_l1                 0x008492         Code  Gb  vreg_util.o [4]
-?pop_w4                 0x008451         Code  Gb  vreg_util.o [4]
-?push_l0                0x008460         Code  Gb  vreg_util.o [4]
-?push_l1                0x008465         Code  Gb  vreg_util.o [4]
-?push_w4                0x008439         Code  Gb  vreg_util.o [4]
-?scmp32_c_l0_l1         0x00822b         Code  Gb  long.o [4]
-?sdiv16_x_x_y           0x008790         Code  Gb  short.o [4]
-?sext16_x_a             0x0087c1         Code  Gb  short.o [4]
-?smod16_y_x_y           0x0087a9         Code  Gb  short.o [4]
-?sra16_x_x_a            0x0087b9         Code  Gb  short.o [4]
-?srl8_a_a_5             0x0088d8         Code  Gb  char.o [4]
+?load32_0x_l0           0x008868         Code  Gb  long_util.o [4]
+?load32_l0_0x           0x00885c         Code  Gb  long_util.o [4]
+?mul32_l0_l0_0x         0x00827d         Code  Gb  long.o [4]
+?mul32_l0_l0_dl         0x00827a         Code  Gb  long.o [4]
+?mul32_l0_l0_l1         0x008286         Code  Gb  long.o [4]
+?pop_l0                 0x0084d7         Code  Gb  vreg_util.o [4]
+?pop_l1                 0x0084e2         Code  Gb  vreg_util.o [4]
+?pop_w4                 0x0084a1         Code  Gb  vreg_util.o [4]
+?push_l0                0x0084b0         Code  Gb  vreg_util.o [4]
+?push_l1                0x0084b5         Code  Gb  vreg_util.o [4]
+?push_w4                0x008489         Code  Gb  vreg_util.o [4]
+?scmp32_c_l0_l1         0x008304         Code  Gb  long.o [4]
+?sdiv16_x_x_y           0x008796         Code  Gb  short.o [4]
+?sext16_x_a             0x0087c7         Code  Gb  short.o [4]
+?smod16_y_x_y           0x0087af         Code  Gb  short.o [4]
+?sra16_x_x_a            0x0087bf         Code  Gb  short.o [4]
+?srl8_a_a_5             0x008914         Code  Gb  char.o [4]
 ?w0                     0x000000         Data  Gb  vregs.o [4]
 ?w1                     0x000002         Data  Gb  vregs.o [4]
 ?w2                     0x000004         Data  Gb  vregs.o [4]
 ?w3                     0x000006         Data  Gb  vregs.o [4]
 ?w4                     0x000008         Data  Gb  vregs.o [4]
 ?w5                     0x00000a         Data  Gb  vregs.o [4]
-ADC1_EOC_IRQHandler     0x00850a   0x60  Code  Gb  adc.o [1]
+ADC1_EOC_IRQHandler     0x00855a   0x60  Code  Gb  adc.o [1]
 ADC_DRH                 0x005404    0x1  Data  Gb  adc.o [1]
 CLK_PCKENR1             0x0050c7    0x1  Data  Gb  clock.o [1]
 CLK_PCKENR2             0x0050ca    0x1  Data  Gb  clock.o [1]
 CLK_SWR                 0x0050c4    0x1  Data  Gb  clock.o [1]
 CSTACK$$Base            0x000700          --   Gb  - Linker created -
 CSTACK$$Limit           0x000800          --   Gb  - Linker created -
-EEPROM_readChar         0x0085f3   0x10  Code  Gb  eeprom.o [1]
-EEPROM_writeChar        0x0085c7   0x2c  Code  Gb  eeprom.o [1]
-EXTI_PORTD_IRQHandler   0x0082d7   0x86  Code  Gb  encoder.o [1]
+EEPROM_readChar         0x008643   0x10  Code  Gb  eeprom.o [1]
+EEPROM_writeChar        0x008617   0x2c  Code  Gb  eeprom.o [1]
+EXTI_PORTD_IRQHandler   0x00831b   0x86  Code  Gb  encoder.o [1]
 FLASH_DUKR              0x005064    0x1  Data  Gb  eeprom.o [1]
-GetAVS                  0x00861c    0x4  Code  Gb  eeprom.o [1]
-GetAngleChange          0x00835d   0x24  Code  Gb  encoder.o [1]
-GetCurrentVoltage       0x0088e2    0x4  Code  Gb  adc.o [1]
-GetEncoderSensorsState  0x008381   0x15  Code  Gb  encoder.o [1]
-GetIHS                  0x008851   0x15  Code  Gb  eeprom.o [1]
-GetLiftMotionVelocity   0x008242   0x95  Code  Gb  adc.o [1]
-GetValue2Display        0x0088e6    0x4  Code  Gb  encoder.o [1]
+GetAVS                  0x00866c    0x4  Code  Gb  eeprom.o [1]
+GetAngleChange          0x00841a   0x24  Code  Gb  encoder.o [1]
+GetCurrentVoltage       0x00891e    0x4  Code  Gb  adc.o [1]
+GetEncoderSensorsState  0x00843e   0x15  Code  Gb  encoder.o [1]
+GetIHS                  0x00888d   0x15  Code  Gb  eeprom.o [1]
+GetLiftMotionVelocity   0x008188   0xd9  Code  Gb  adc.o [1]
+GetValue2Display        0x008922    0x4  Code  Gb  encoder.o [1]
 INTVEC$$Base            0x008000          --   Gb  - Linker created -
 INTVEC$$Limit           0x008080          --   Gb  - Linker created -
-Region$$Table$$Base     0x008816          --   Gb  - Linker created -
-Region$$Table$$Limit    0x008820          --   Gb  - Linker created -
-RestartADC              0x0088d3    0x5  Code  Gb  adc.o [1]
-SetAVS                  0x008603    0x4  Code  Gb  eeprom.o [1]
-SetDisplayNumeric       0x008620   0x56  Code  Gb  serialLED.o [1]
-SetIHS                  0x008607   0x15  Code  Gb  eeprom.o [1]
-SetMotorVelocity        0x0086c1   0x4a  Code  Gb  motor_control.o [1]
-SetValue2Display        0x0088ea    0x4  Code  Gb  encoder.o [1]
-Setup                   0x0088b1    0xf  Code  Gb  main.o [1]
-SetupADC                0x0083cc   0x6d  Code  Gb  adc.o [1]
-SetupClock              0x008750   0x40  Code  Gb  clock.o [1]
-SetupEncoder            0x008396   0x36  Code  Gb  encoder.o [1]
-SetupMotorControl       0x0084a5   0x65  Code  Gb  motor_control.o [1]
-SetupSerialLEDs         0x00870b   0x45  Code  Gb  serialLED.o [1]
+Region$$Table$$Base     0x008852          --   Gb  - Linker created -
+Region$$Table$$Limit    0x00885c          --   Gb  - Linker created -
+RestartADC              0x00890f    0x5  Code  Gb  adc.o [1]
+SetAVS                  0x008653    0x4  Code  Gb  eeprom.o [1]
+SetDisplayNumeric       0x008670   0x56  Code  Gb  serialLED.o [1]
+SetIHS                  0x008657   0x15  Code  Gb  eeprom.o [1]
+SetMotorVelocity        0x0087ce   0x2e  Code  Gb  motor_control.o [1]
+SetValue2Display        0x008926    0x4  Code  Gb  encoder.o [1]
+Setup                   0x0088ed    0xf  Code  Gb  main.o [1]
+SetupADC                0x0083a1   0x79  Code  Gb  adc.o [1]
+SetupClock              0x008756   0x40  Code  Gb  clock.o [1]
+SetupEncoder            0x008453   0x36  Code  Gb  encoder.o [1]
+SetupMotorControl       0x0084f5   0x65  Code  Gb  motor_control.o [1]
+SetupSerialLEDs         0x008711   0x45  Code  Gb  serialLED.o [1]
 TIM2_ARRH               0x00530d    0x1  Data  Gb  motor_control.o [1]
 TIM2_ARRL               0x00530e    0x1  Data  Gb  motor_control.o [1]
 TIM2_CCR1H              0x00530f    0x1  Data  Gb  motor_control.o [1]
@@ -420,8 +420,8 @@ TIM2_CCR2L              0x005312    0x1  Data  Gb  motor_control.o [1]
 TIM3_ARRH               0x00532b    0x1  Data  Gb  serialLED.o [1]
 TIM3_ARRL               0x00532c    0x1  Data  Gb  serialLED.o [1]
 TIM3_OVR_UIF_handler    0x008080  0x108  Code  Gb  serialLED.o [1]
-VOLTAGE_HIGH_LIMIT      0x0088fb    0x1  Data  Lc  adc.o [1]
-VOLTAGE_LOW_LIMIT       0x0088fa    0x1  Data  Lc  adc.o [1]
+VOLTAGE_HIGH_LIMIT      0x008937    0x1  Data  Lc  adc.o [1]
+VOLTAGE_LOW_LIMIT       0x008936    0x1  Data  Lc  adc.o [1]
 _A_ADC_CR1              0x005401    0x1  Data  Gb  adc.o [1]
 _A_ADC_CR2              0x005402    0x1  Data  Gb  adc.o [1]
 _A_ADC_CR3              0x005403    0x1  Data  Gb  adc.o [1]
@@ -442,6 +442,7 @@ _A_PA_IDR               0x005001    0x1  Data  Gb  adc.o [1]
 _A_PB_CR1               0x005008    0x1  Data  Gb  serialLED.o [1]
 _A_PB_CR2               0x005009    0x1  Data  Gb  serialLED.o [1]
 _A_PB_DDR               0x005007    0x1  Data  Gb  serialLED.o [1]
+_A_PB_IDR               0x005006    0x1  Data  Gb  adc.o [1]
 _A_PB_ODR               0x005005    0x1  Data  Gb  serialLED.o [1]
 _A_PD_CR1               0x005012    0x1  Data  Gb  motor_control.o [1]
 _A_PD_CR2               0x005013    0x1  Data  Gb  motor_control.o [1]
@@ -465,44 +466,48 @@ _A_TIM3_CR1             0x005320    0x1  Data  Gb  serialLED.o [1]
 _A_TIM3_IER             0x005321    0x1  Data  Gb  serialLED.o [1]
 _A_TIM3_PSCR            0x00532a    0x1  Data  Gb  serialLED.o [1]
 _A_TIM3_SR1             0x005322    0x1  Data  Gb  serialLED.o [1]
-__DebugBreak            0x0088fc    0x1  Code  Gb  __dbg_break.o [3]
-__exit                  0x00887a   0x14  Code  Gb  __dbg_xxexit.o [3]
-__iar_copy_init2        0x0087c8         Code  Gb  init_small.o [4]
-__iar_data_init2        0x00883a   0x17  Code  Gb  init.o [4]
-__iar_program_start     0x00888e         Code  Gb  cstartup.o [4]
+__DebugBreak            0x008938    0x1  Code  Gb  __dbg_break.o [3]
+__exit                  0x0088b6   0x14  Code  Gb  __dbg_xxexit.o [3]
+__iar_copy_init2        0x00882a         Code  Gb  init_small.o [4]
+__iar_data_init2        0x008876   0x17  Code  Gb  init.o [4]
+__iar_program_start     0x0088ca         Code  Gb  cstartup.o [4]
 __iar_unhandled_exception
-                        0x0088f7         Code  Gb  unhandled_exception.o [4]
+                        0x008933         Code  Gb  unhandled_exception.o [4]
 __intvec                0x008000         Data  Gb  interrupt.o [4]
-__low_level_init        0x0088f1    0x3  Code  Gb  low_level_init.o [4]
-_exit                   0x0088dd         Code  Gb  cexit.o [4]
+__low_level_init        0x00892d    0x3  Code  Gb  low_level_init.o [4]
+_exit                   0x008919         Code  Gb  cexit.o [4]
 _interrupt_17           0x008080         Code  Gb  serialLED.o [1]
-_interrupt_24           0x00850a         Code  Gb  adc.o [1]
-_interrupt_8            0x0082d7         Code  Gb  encoder.o [1]
-ab                      0x000028    0x1  Data  Lc  encoder.o [1]
-buttonPressed           0x000029    0x1  Data  Lc  encoder.o [1]
-ch0                     0x00001e    0x1  Data  Gb  serialLED.o [1]
-ch1                     0x00001f    0x1  Data  Gb  serialLED.o [1]
-ch2                     0x000020    0x1  Data  Gb  serialLED.o [1]
-ch3                     0x000021    0x1  Data  Gb  serialLED.o [1]
-current_voltage         0x000022    0x1  Data  Lc  adc.o [1]
-encoder_change_accum    0x00002a    0x2  Data  Lc  encoder.o [1]
-exit                    0x0088f4    0x3  Code  Gb  exit.o [4]
-handleButton            0x008676   0x4b  Code  Gb  encoder.o [1]
-int_to_7leds            0x000010    0xe  Data  Lc  serialLED.o [1]
-last_value2display      0x000030    0x1  Data  Lc  serialLED.o [1]
-main                    0x0088cb    0x8  Code  Gb  main.o [1]
-new_value2display       0x000031    0x1  Data  Lc  serialLED.o [1]
-param_display_counter   0x00002e    0x2  Data  Lc  serialLED.o [1]
-pos_counter             0x00002c    0x1  Data  Lc  serialLED.o [1]
-setDisplayState         0x00856a   0x5d  Code  Gb  serialLED.o [1]
-setInitialHeight        0x008866   0x14  Code  Gb  adc.o [1]
-table                   0x0088a1   0x10  Data  Lc  encoder.o [1]
+_interrupt_24           0x00855a         Code  Gb  adc.o [1]
+_interrupt_8            0x00831b         Code  Gb  encoder.o [1]
+ab                      0x000030    0x1  Data  Lc  encoder.o [1]
+buttonPressed           0x000031    0x1  Data  Lc  encoder.o [1]
+ch0                     0x000022    0x1  Data  Gb  serialLED.o [1]
+ch1                     0x000023    0x1  Data  Gb  serialLED.o [1]
+ch2                     0x000024    0x1  Data  Gb  serialLED.o [1]
+ch3                     0x000025    0x1  Data  Gb  serialLED.o [1]
+current_voltage         0x000026    0x1  Data  Lc  adc.o [1]
+down_for_plate_collision_couner
+                        0x00002b    0x4  Data  Lc  adc.o [1]
+down_for_plate_collision_counter_limit
+                        0x000010    0x4  Data  Lc  adc.o [1]
+encoder_change_accum    0x000032    0x2  Data  Lc  encoder.o [1]
+exit                    0x008930    0x3  Code  Gb  exit.o [4]
+handleButton            0x0086c6   0x4b  Code  Gb  encoder.o [1]
+int_to_7leds            0x000014    0xe  Data  Lc  serialLED.o [1]
+last_value2display      0x000038    0x1  Data  Lc  serialLED.o [1]
+main                    0x008907    0x8  Code  Gb  main.o [1]
+new_value2display       0x000039    0x1  Data  Lc  serialLED.o [1]
+param_display_counter   0x000036    0x2  Data  Lc  serialLED.o [1]
+pos_counter             0x000034    0x1  Data  Lc  serialLED.o [1]
+setDisplayState         0x0085ba   0x5d  Code  Gb  serialLED.o [1]
+setInitialHeight        0x0088a2   0x14  Code  Gb  adc.o [1]
+table                   0x0088dd   0x10  Data  Lc  encoder.o [1]
 up_after_collision_counter
-                        0x000023    0x4  Data  Lc  adc.o [1]
+                        0x000027    0x4  Data  Lc  adc.o [1]
 up_after_collision_counter_limit
                         0x00000c    0x4  Data  Lc  adc.o [1]
-value2display           0x000027    0x1  Data  Lc  encoder.o [1]
-value_refresh_counter   0x00002d    0x1  Data  Lc  serialLED.o [1]
+value2display           0x00002f    0x1  Data  Lc  encoder.o [1]
+value_refresh_counter   0x000035    0x1  Data  Lc  serialLED.o [1]
 
 
 [1] = C:\Users\Sales\Documents\GitHub\74HC595\74HC595\Debug\Obj
@@ -510,9 +515,9 @@ value_refresh_counter   0x00002d    0x1  Data  Lc  serialLED.o [1]
 [3] = dbgstm8smd.a
 [4] = dlstm8smn.a
 
-  2 107 bytes of readonly  code memory
-    194 bytes of readonly  data memory
-    306 bytes of readwrite data memory (+ 56 absolute)
+  2 159 bytes of readonly  code memory
+    202 bytes of readonly  data memory
+    314 bytes of readwrite data memory (+ 57 absolute)
 
 Errors: none
 Warnings: none

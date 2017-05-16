@@ -113,7 +113,7 @@ static unsigned char value_refresh_counter = 0;
 #define VALUE_REFRESH_COUNTER_LIMIT 4
 
 static unsigned int param_display_counter = 0;
-#define PARAM_DISPLAY_COUNTER_LIMIT 200
+#define PARAM_DISPLAY_COUNTER_LIMIT 100
 
 unsigned char ch0 = 8; 
 unsigned char ch1 = 9; 

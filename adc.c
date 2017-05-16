@@ -26,6 +26,21 @@
 void SetupADC(){
   
   // controller signal pins
+  PA_DDR_bit.DDR1 = 0;  // Ножка PA1 конфигурируется на ввод - сигнал "резак вверх" от контроллера
+                        // КЗ на землю - вкл/разомкнуто - выкл
+  PA_CR1_bit.C11 = 1;   // Выход плавающий - установливаем подтягивающий резисто
+  PA_CR2_bit.C21 = 0;   // Прерывание выключено
+
+  PA_DDR_bit.DDR2 = 0;  // Ножка PA2 конфигурируется на ввод - сигнал "резак вниз" от контроллера
+                        // КЗ на землю - вкл/разомкнуто - выкл
+  PA_CR1_bit.C12 = 1;   // Выход плавающий - установливаем подтягивающий резистор
+  PA_CR2_bit.C22 = 0;   // Прерывание выключено
+
+  PB_DDR_bit.DDR3 = 0;  // Ножка PB3 конфигурируется на ввод - сигнал кнопки "касание" 
+                        // КЗ на землю - вкл/разомкнуто - выкл
+  PB_CR1_bit.C13 = 1;   // Выход плавающий - установливаем подтягивающий резистор
+  PB_CR2_bit.C23 = 0;   // Прерывание выключено
+
   PD_DDR_bit.DDR0 = 0;  // Ножка PD0 конфигурируется на ввод - сигнал "вниз до касания" от контроллера
                         // КЗ на землю - вкл/разомкнуто - выкл
   PD_CR1_bit.C10 = 1;   // Выход плавающий - установливаем подтягивающий резистор
@@ -35,16 +50,6 @@ void SetupADC(){
                         // КЗ на землю - вкл/разомкнуто - выкл
   PD_CR1_bit.C17 = 1;   // Выход плавающий - установливаем подтягивающий резистор
   PD_CR2_bit.C27 = 0;   // Прерывание выключено
-
-  PA_DDR_bit.DDR1 = 0;  // Ножка PA1 конфигурируется на ввод - сигнал "резак вверх" от контроллера
-                        // КЗ на землю - вкл/разомкнуто - выкл
-  PA_CR1_bit.C11 = 1;   // Выход плавающий - установливаем подтягивающий резистор  EXTI_CR1_PAIS  = 3;    // Прерывания по переднему и заднему фронту для порта A
-  PA_CR2_bit.C21 = 0;   // Прерывание выключено
-
-  PA_DDR_bit.DDR2 = 0;  // Ножка PA2 конфигурируется на ввод - сигнал "резак вниз" от контроллера
-                        // КЗ на землю - вкл/разомкнуто - выкл
-  PA_CR1_bit.C12 = 1;   // Выход плавающий - установливаем подтягивающий резистор
-  PA_CR2_bit.C22 = 0;   // Прерывание выключено
 
   PF_DDR_bit.DDR4 = 0;  // Ножка PF4 конфигурируется на ввод - взод разрешения контроля высоты 
                         // КЗ на землю - вкл/разомкнуто - выкл
@@ -79,6 +84,7 @@ static unsigned char current_voltage = 0;
 unsigned char GetCurrentVoltage(){ return current_voltage;}
 
 #define INITIAL_POSITIONING_SIGNAL  PD_IDR_bit.IDR0
+#define INITIAL_POSITIONING_BUTTON  PB_IDR_bit.IDR3
 #define COLLISION_SIGNAL            PD_IDR_bit.IDR7
 #define UP_SIGNAL                   PA_IDR_bit.IDR1
 #define DOWN_SIGNAL                 PA_IDR_bit.IDR2
@@ -86,7 +92,9 @@ unsigned char GetCurrentVoltage(){ return current_voltage;}
 #define POSITIONING_COMPLETE_SIGNAL PE_ODR_bit.ODR5
 
 static signed long up_after_collision_counter = 0;
-static unsigned long up_after_collision_counter_limit = 50000;
+static unsigned long up_after_collision_counter_limit = 50000L;
+static signed long down_for_plate_collision_couner = 0;
+static unsigned long down_for_plate_collision_counter_limit = 500000L;
 
 void setInitialHeight(char newValue){
   up_after_collision_counter_limit = 200L * newValue;
@@ -102,11 +110,19 @@ signed char GetLiftMotionVelocity(signed char current_delta){
   POSITIONING_COMPLETE_SIGNAL = 1; // сбросить сигнал завершения "теста на касание"
 
   // обработка команды на начальное позиционирование
-  if(INITIAL_POSITIONING_SIGNAL == 0) // если есть сигнал "касание" от контроллера
+  if((INITIAL_POSITIONING_SIGNAL == 0)||(INITIAL_POSITIONING_BUTTON == 0)){
+    // если есть сигнал "касание" от контроллера
+    down_for_plate_collision_couner = down_for_plate_collision_counter_limit; // устанавливаем счетчик на величину, пропорционяльную таймауту
+  }
+
+  if(down_for_plate_collision_couner > 0) { // вниз, пока не случится коллизия или не обнулится счетяик
     current_lift_motion_velocity = -127; // вниз на максимальной скорости
+    down_for_plate_collision_couner--;  // уменшаем счетчик ожидания таймаута
+  }
   
   // обрабатываем значание датчика прикосновения
   if(COLLISION_SIGNAL > 0){ // сработка датчика прикосновения с листом
+    down_for_plate_collision_couner = 0;  // завершаем движение вниз
     if(up_after_collision_counter <= 0) 
       up_after_collision_counter = up_after_collision_counter_limit; // начинаем движение вверх после касания/коллизии
     if(INITIAL_POSITIONING_SIGNAL == 0) // если текушее состояние "тест на касание"

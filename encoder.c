@@ -120,7 +120,6 @@ __interrupt void EXTI_PORTD_IRQHandler(void)
   unsigned char sensorsState = GetEncoderSensorsState();
   encoder_change_accum = encoder_change_accum + GetAngleChange(sensorsState);
   int change = encoder_change_accum/3;
-//  int change = GetAngleChange(sensorsState);
   if(change != 0){
     encoder_change_accum = 0;
     int tmp;
@@ -131,12 +130,12 @@ __interrupt void EXTI_PORTD_IRQHandler(void)
     case 1:
       tmp = GetAVS() + change;
       if(tmp >= 0) 
-        if(tmp < 255) SetAVS((unsigned char)tmp);
+        if(tmp <= 255) SetAVS((unsigned char)tmp);
       break;
     case 2:
       tmp = GetIHS() + change;
       if(tmp >= 0) 
-        if(tmp < 255) SetIHS((unsigned char)tmp);
+        if(tmp <= 255) SetIHS((unsigned char)tmp);
       break;
     }
   }
