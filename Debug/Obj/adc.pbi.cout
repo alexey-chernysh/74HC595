@@ -121,7 +121,7 @@ C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\stm8\inc\c
 -D__UINTPTR_T_MAX__=0xffffU
 -D__INTPTR_SIZE_PREFIX__="h"
 -D__JMP_BUF_ELEMENT_TYPE__=unsigned char
--D__JMP_BUF_NUM_ELEMENTS__=28
+-D__JMP_BUF_NUM_ELEMENTS__=29
 -D__TID__=0x3800
 -D__VER__=220
 -D__SUBVERSION__=1
@@ -138,12 +138,16 @@ C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\stm8\inc\c
 -D__WCHAR_T_MAX__=0xffffU
 -D__DEF_PTR_MEM__=__near
 -D__DEF_PTR_SIZE__=2
--D__CODE_MEMORY_LIST3__(_P1,_P2)=__CODE_MEM_HELPER3__(__near_func, 0, _P1, _P2)
+-D__CODE_MEMORY_LIST3__(_P1,_P2)=__CODE_MEM_HELPER3__(__far_func, 0, _P1, _P2) __CODE_MEM_HELPER3__(__huge_func, 1, _P1, _P2)
 -D__DATA_MEMORY_LIST3__(_P1,_P2)=__DATA_MEM_HELPER3__(__tiny, 0, _P1, _P2) __DATA_MEM_HELPER3__(__near, 1, _P1, _P2) __DATA_MEM_HELPER3__(__far, 2, _P1, _P2) __DATA_MEM_HELPER3__(__huge, 3, _P1, _P2) __DATA_MEM_HELPER3__(__eeprom, 4, _P1, _P2)
--D__CODE_MEM0__=__near_func
+-D__CODE_MEM0__=__far_func
 -D__CODE_MEM0_POINTER_OK__=1
--D__CODE_MEM0_UNIQUE_POINTER__=1
+-D__CODE_MEM0_UNIQUE_POINTER__=0
 -D__CODE_MEM0_VAR_OK__=1
+-D__CODE_MEM1__=__huge_func
+-D__CODE_MEM1_POINTER_OK__=1
+-D__CODE_MEM1_UNIQUE_POINTER__=1
+-D__CODE_MEM1_VAR_OK__=1
 -D__DATA_MEM0__=__tiny
 -D__DATA_MEM0_POINTER_OK__=1
 -D__DATA_MEM0_UNIQUE_POINTER__=1
@@ -195,7 +199,7 @@ C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\stm8\inc\c
 -D__DATA_MEM4_UINTPTR_TYPE__=unsigned short int
 -D__DATA_MEM4_INTPTR_SIZE_PREFIX__="h"
 -D__DATA_MEM4_MAX_SIZE__=0xffff
--D__CODE_PTR_MEMORY_LIST3__(_P1,_P2)=__CODE_PTR_MEM_HELPER3__(__near_func, 0, _P1, _P2)
+-D__CODE_PTR_MEMORY_LIST3__(_P1,_P2)=__CODE_PTR_MEM_HELPER3__(__huge_func, 1, _P1, _P2)
 -D__DATA_PTR_MEMORY_LIST3__(_P1,_P2)=__DATA_PTR_MEM_HELPER3__(__tiny, 0, _P1, _P2) __DATA_PTR_MEM_HELPER3__(__near, 1, _P1, _P2) __DATA_PTR_MEM_HELPER3__(__far, 2, _P1, _P2) __DATA_PTR_MEM_HELPER3__(__huge, 3, _P1, _P2) __DATA_PTR_MEM_HELPER3__(__eeprom, 4, _P1, _P2)
 -D__VAR_MEMORY_LIST3__(_P1,_P2)=__VAR_MEM_HELPER3__(__tiny, 0, _P1, _P2) __VAR_MEM_HELPER3__(__near, 1, _P1, _P2) __VAR_MEM_HELPER3__(__far, 2, _P1, _P2) __VAR_MEM_HELPER3__(__huge, 3, _P1, _P2) __VAR_MEM_HELPER3__(__eeprom, 4, _P1, _P2)
 -D__HEAP_MEM0__=1
@@ -206,7 +210,7 @@ C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\stm8\inc\c
 -D__DEF_HEAP_MEM__=__near
 -D__MULTIPLE_INHERITANCE__=1
 -D_RTSL_COMPARE_T=unsigned char
--D__CODE_MODEL__=__SMALL_CODE_MODEL__
+-D__CODE_MODEL__=__MEDIUM_CODE_MODEL__
 -D__CORE__=__STM8__
 -D__DATA_MODEL__=__MEDIUM_DATA_MODEL__
 -D__ICCSTM8__=1
@@ -248,8 +252,8 @@ C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\stm8\inc\c
 -D__EDG_SYSV=0
 -D__EDG_ANSIC=1
 -D__EDG_CPP11_IL_EXTENSIONS_SUPPORTED=1
--D_DLIB_CONFIG_FILE_HEADER_NAME="C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\stm8\LIB\dlstm8smn.h"
--D_DLIB_CONFIG_FILE_STRING="C:\\Program Files (x86)\\IAR Systems\\Embedded Workbench 7.3\\stm8\\LIB\\dlstm8smn.h"
+-D_DLIB_CONFIG_FILE_HEADER_NAME="C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\stm8\LIB\dlstm8mmn.h"
+-D_DLIB_CONFIG_FILE_STRING="C:\\Program Files (x86)\\IAR Systems\\Embedded Workbench 7.3\\stm8\\LIB\\dlstm8mmn.h"
 -D__VERSION__="IAR C/C++ Compiler V2.20.1.176 for STM8"
 -D__CODE_MEMORY_LIST1__()=__CODE_MEM_HELPER1__(__code, 0 )
 -D__CODE_MEMORY_LIST2__(_P1)=__CODE_MEM_HELPER2__(__code, 0 ,  _P1 )

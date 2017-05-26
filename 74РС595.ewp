@@ -22,7 +22,7 @@
         <option>
           <name>GenCodeModel</name>
           <version>0</version>
-          <state>0</state>
+          <state>1</state>
         </option>
         <option>
           <name>GenDataModel</name>
@@ -61,7 +61,7 @@
         </option>
         <option>
           <name>GenRTConfigPath</name>
-          <state>$TOOLKIT_DIR$\LIB\dlstm8smn.h</state>
+          <state>$TOOLKIT_DIR$\LIB\dlstm8mmn.h</state>
         </option>
         <option>
           <name>GenLibInFormatter</name>
@@ -1400,7 +1400,7 @@
         </option>
         <option>
           <name>IlinkIcfFile</name>
-          <state>lnk0t.icf</state>
+          <state>$TOOLKIT_DIR$\config\lnkstm8s105k4.icf</state>
         </option>
         <option>
           <name>IlinkIcfFileSlave</name>
@@ -1464,7 +1464,7 @@
         </option>
         <option>
           <name>IlinkProgramEntryLabel</name>
-          <state></state>
+          <state>__iar_program_start</state>
         </option>
         <option>
           <name>DoFill</name>
@@ -1592,13 +1592,28 @@
     <name>$PROJ_DIR$\adc.c</name>
   </file>
   <file>
+    <name>$PROJ_DIR$\adc.h</name>
+  </file>
+  <file>
     <name>$PROJ_DIR$\clock.c</name>
+  </file>
+  <file>
+    <name>$PROJ_DIR$\clock.h</name>
+  </file>
+  <file>
+    <name>$PROJ_DIR$\common.h</name>
   </file>
   <file>
     <name>$PROJ_DIR$\eeprom.c</name>
   </file>
   <file>
+    <name>$PROJ_DIR$\eeprom.h</name>
+  </file>
+  <file>
     <name>$PROJ_DIR$\encoder.c</name>
+  </file>
+  <file>
+    <name>$PROJ_DIR$\encoder.h</name>
   </file>
   <file>
     <name>$PROJ_DIR$\main.c</name>
@@ -1607,7 +1622,13 @@
     <name>$PROJ_DIR$\motor_control.c</name>
   </file>
   <file>
+    <name>$PROJ_DIR$\motor_control.h</name>
+  </file>
+  <file>
     <name>$PROJ_DIR$\serialLED.c</name>
+  </file>
+  <file>
+    <name>$PROJ_DIR$\serialLED.h</name>
   </file>
 </project>
 

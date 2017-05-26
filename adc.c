@@ -77,7 +77,7 @@ void RestartADC(void){
   ADC_CR1_ADON = 1;       //  перезапуск ј÷ѕ
 }
 
-static const unsigned char VOLTAGE_LOW_LIMIT = 50;
+static const unsigned char VOLTAGE_LOW_LIMIT = 40;
 static const unsigned char VOLTAGE_HIGH_LIMIT = 210;
 static unsigned char current_voltage = 0;
 
@@ -92,17 +92,26 @@ unsigned char GetCurrentVoltage(){ return current_voltage;}
 #define POSITIONING_COMPLETE_SIGNAL PE_ODR_bit.ODR5
 
 static signed long up_after_collision_counter = 0;
-static unsigned long up_after_collision_counter_limit = 50000L;
-static signed long down_for_plate_collision_couner = 0;
-static unsigned long down_for_plate_collision_counter_limit = 500000L;
+static signed long up_after_collision_counter_limit = 50000L;
+static signed long down_for_plate_collision_counter = 0;
+static signed long down_for_plate_collision_counter_limit = 500000L;
 
 void setInitialHeight(char newValue){
   up_after_collision_counter_limit = 200L * newValue;
 }
 
+void delay(){
+  int j=0;
+  for(int i=0; i<300; i++){
+    j++;
+  }
+}
 
-signed char GetLiftMotionVelocity(signed char current_delta){
-  signed char current_lift_motion_velocity = 0;
+static signed int upVelocity = 126;
+static signed int downVelocity = -126;
+
+signed int GetLiftMotionVelocity(signed int current_delta){
+  signed int current_lift_motion_velocity = 0;
   
   if(AUTO_SIGNAL == 0) 
     current_lift_motion_velocity = current_delta;
@@ -110,35 +119,38 @@ signed char GetLiftMotionVelocity(signed char current_delta){
   POSITIONING_COMPLETE_SIGNAL = 1; // сбросить сигнал завершени€ "теста на касание"
 
   // обработка команды на начальное позиционирование
-  if((INITIAL_POSITIONING_SIGNAL == 0)||(INITIAL_POSITIONING_BUTTON == 0)){
-    // если есть сигнал "касание" от контроллера
-    down_for_plate_collision_couner = down_for_plate_collision_counter_limit; // устанавливаем счетчик на величину, пропорцион€льную таймауту
+  bool isInitialPositioning = ((INITIAL_POSITIONING_SIGNAL == 0)||(INITIAL_POSITIONING_BUTTON == 0));
+  if(isInitialPositioning){
+    // если есть сигнал "касание" от контроллера или кнопки
+    down_for_plate_collision_counter = down_for_plate_collision_counter_limit; // устанавливаем счетчик на величину, пропорцион€льную таймауту
   }
 
-  if(down_for_plate_collision_couner > 0) { // вниз, пока не случитс€ коллизи€ или не обнулитс€ счет€ик
-    current_lift_motion_velocity = -127; // вниз на максимальной скорости
-    down_for_plate_collision_couner--;  // уменшаем счетчик ожидани€ таймаута
+  if(down_for_plate_collision_counter > 0) { // вниз, пока не случитс€ коллизи€ или не обнулитс€ счет€ик
+    current_lift_motion_velocity = downVelocity; // вниз на максимальной скорости
+    down_for_plate_collision_counter--;  // уменшаем счетчик ожидани€ таймаута
   }
   
   // обрабатываем значание датчика прикосновени€
   if(COLLISION_SIGNAL > 0){ // сработка датчика прикосновени€ с листом
-    down_for_plate_collision_couner = 0;  // завершаем движение вниз
+    down_for_plate_collision_counter = 0;  // завершаем движение вниз
     if(up_after_collision_counter <= 0) 
       up_after_collision_counter = up_after_collision_counter_limit; // начинаем движение вверх после касани€/коллизии
-    if(INITIAL_POSITIONING_SIGNAL == 0) // если текушее состо€ние "тест на касание"
-      POSITIONING_COMPLETE_SIGNAL = 0; // выдать сигнал завершени€ "теста на касание"
   }; 
 
   if(up_after_collision_counter > 0) { // вверх, в течении up_after_collision_counter_limit циклов
-    current_lift_motion_velocity = 127;  // вверх, с максимальной скоростью
+    current_lift_motion_velocity = upVelocity;  // вверх, с максимальной скоростью
     up_after_collision_counter--;
+    if(up_after_collision_counter == 0){
+      POSITIONING_COMPLETE_SIGNAL = 0; // выдать сигнал завершени€ "теста на касание"
+      delay();
+    }
   }
   
   // обработка сигналов контроллера "резак вверх" и "резак вниз"
   if(DOWN_SIGNAL == 0) 
-    current_lift_motion_velocity = -127; // вниз, с максимальной скоростью
+    current_lift_motion_velocity = downVelocity; // вниз, с максимальной скоростью
   if(UP_SIGNAL == 0)   
-    current_lift_motion_velocity =  127; // вверх, с максимальной скоростью 
+    current_lift_motion_velocity = upVelocity; // вверх, с максимальной скоростью 
 
   return current_lift_motion_velocity;
 }
@@ -147,15 +159,11 @@ signed char GetLiftMotionVelocity(signed char current_delta){
 __interrupt void ADC1_EOC_IRQHandler(){
   if(ADC_CSR_EOC == 1){
     current_voltage = ADC_DRH; //    Extract the ADC reading.
-    int tmp_delta = 0;
+    signed int delta = 0;
     if(current_voltage > VOLTAGE_LOW_LIMIT)
       if(current_voltage < VOLTAGE_HIGH_LIMIT)
-        tmp_delta = GetAVS() - current_voltage;
-    tmp_delta = tmp_delta<<3;
-    signed char voltage_delta = (char)tmp_delta;
-    if(tmp_delta >  127) voltage_delta =  127;
-    if(tmp_delta < -127) voltage_delta = -127;
-    voltage_delta = GetLiftMotionVelocity(voltage_delta);
-    SetMotorVelocity(voltage_delta); // вверх или вниз, со скоростью voltage_delta
+        delta = GetAVS() - current_voltage;
+    delta = GetLiftMotionVelocity(delta<<3);
+    SetMotorVelocity(delta); // вверх или вниз, со скоростью delta
   }
 }

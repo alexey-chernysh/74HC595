@@ -22,6 +22,7 @@ void main( void )
   __enable_interrupt();
     
   do{ // Бесконечный цикл
+//    asm("nop");
     __wait_for_interrupt();
   } while(true); 
 

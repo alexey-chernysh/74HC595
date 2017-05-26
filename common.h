@@ -6,6 +6,9 @@
 #ifndef COMMON_H_
 #define COMMON_H_
 
+#define MAX_CHAR 0x7F
+#define MIN_CHAR 0x80
+
 #define MAX_INT    0x7FFF
 #define MIN_INT    0x8000
 #define INVERTED_8 0xFFF7

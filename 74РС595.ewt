@@ -1944,13 +1944,28 @@
     <name>$PROJ_DIR$\adc.c</name>
   </file>
   <file>
+    <name>$PROJ_DIR$\adc.h</name>
+  </file>
+  <file>
     <name>$PROJ_DIR$\clock.c</name>
+  </file>
+  <file>
+    <name>$PROJ_DIR$\clock.h</name>
+  </file>
+  <file>
+    <name>$PROJ_DIR$\common.h</name>
   </file>
   <file>
     <name>$PROJ_DIR$\eeprom.c</name>
   </file>
   <file>
+    <name>$PROJ_DIR$\eeprom.h</name>
+  </file>
+  <file>
     <name>$PROJ_DIR$\encoder.c</name>
+  </file>
+  <file>
+    <name>$PROJ_DIR$\encoder.h</name>
   </file>
   <file>
     <name>$PROJ_DIR$\main.c</name>
@@ -1959,7 +1974,13 @@
     <name>$PROJ_DIR$\motor_control.c</name>
   </file>
   <file>
+    <name>$PROJ_DIR$\motor_control.h</name>
+  </file>
+  <file>
     <name>$PROJ_DIR$\serialLED.c</name>
+  </file>
+  <file>
+    <name>$PROJ_DIR$\serialLED.h</name>
   </file>
 </project>
 
