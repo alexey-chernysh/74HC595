@@ -41,8 +41,12 @@ void SetAVS(unsigned char new_value){
 void SetIHS(unsigned char new_value){
   setInitialHeight(new_value);
   EEPROM_writeChar(1, new_value);
-  
 }
+
+void SetTLS(unsigned char new_value){
+  setSensetivity(new_value);
+  EEPROM_writeChar(2, new_value);
+};
 
 unsigned char GetAVS(){
   return EEPROM_readChar(0);
@@ -54,3 +58,8 @@ unsigned char GetIHS(){
   return result;
 }
 
+unsigned char GetTLS(){
+  char result = EEPROM_readChar(2);
+  setSensetivity(result);
+  return result;
+};

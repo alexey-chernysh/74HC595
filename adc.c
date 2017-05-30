@@ -41,6 +41,11 @@ void SetupADC(){
   PB_CR1_bit.C13 = 1;   // Выход плавающий - установливаем подтягивающий резистор
   PB_CR2_bit.C23 = 0;   // Прерывание выключено
 
+  PC_DDR_bit.DDR1 = 0;  // Ножка PC1 конфигурируется на ввод - сигнал "прогрев" 
+                        // КЗ на землю - вкл/разомкнуто - выкл
+  PC_CR1_bit.C11 = 1;   // Выход плавающий - установливаем подтягивающий резистор
+  PC_CR2_bit.C21 = 0;   // Прерывание выключено
+
   PD_DDR_bit.DDR0 = 0;  // Ножка PD0 конфигурируется на ввод - сигнал "вниз до касания" от контроллера
                         // КЗ на землю - вкл/разомкнуто - выкл
   PD_CR1_bit.C10 = 1;   // Выход плавающий - установливаем подтягивающий резистор
@@ -79,22 +84,33 @@ void RestartADC(void){
 
 static const unsigned char VOLTAGE_LOW_LIMIT = 40;
 static const unsigned char VOLTAGE_HIGH_LIMIT = 210;
-static unsigned char current_voltage = 0;
+static unsigned int current_voltage = 0;
 
 unsigned char GetCurrentVoltage(){ return current_voltage;}
 
-#define INITIAL_POSITIONING_SIGNAL  PD_IDR_bit.IDR0
-#define INITIAL_POSITIONING_BUTTON  PB_IDR_bit.IDR3
-#define COLLISION_SIGNAL            PD_IDR_bit.IDR7
 #define UP_SIGNAL                   PA_IDR_bit.IDR1
 #define DOWN_SIGNAL                 PA_IDR_bit.IDR2
-#define AUTO_SIGNAL                 PF_IDR_bit.IDR4
+#define INITIAL_POSITIONING_BUTTON  PB_IDR_bit.IDR3
+#define PREHEAT_SIGNAL              PC_IDR_bit.IDR1
+#define INITIAL_POSITIONING_SIGNAL  PD_IDR_bit.IDR0
+#define COLLISION_SIGNAL            PD_IDR_bit.IDR7
 #define POSITIONING_COMPLETE_SIGNAL PE_ODR_bit.ODR5
+#define AUTO_SIGNAL                 PF_IDR_bit.IDR4
 
 static signed long up_after_collision_counter = 0;
 static signed long up_after_collision_counter_limit = 50000L;
 static signed long down_for_plate_collision_counter = 0;
 static signed long down_for_plate_collision_counter_limit = 500000L;
+static bool preheat = false;
+
+bool preheatOn(){
+  return preheat;
+}
+
+unsigned char sensetivity;
+void setSensetivity(unsigned char s){
+  sensetivity = s;
+}
 
 void setInitialHeight(char newValue){
   up_after_collision_counter_limit = 200L * newValue;
@@ -112,6 +128,9 @@ static signed int downVelocity = -126;
 
 signed int GetLiftMotionVelocity(signed int current_delta){
   signed int current_lift_motion_velocity = 0;
+  
+  if(PREHEAT_SIGNAL == 0) preheat = true;
+  else preheat = false;
   
   if(AUTO_SIGNAL == 0) 
     current_lift_motion_velocity = current_delta;
@@ -147,10 +166,12 @@ signed int GetLiftMotionVelocity(signed int current_delta){
   }
   
   // обработка сигналов контроллера "резак вверх" и "резак вниз"
-  if(DOWN_SIGNAL == 0) 
-    current_lift_motion_velocity = downVelocity; // вниз, с максимальной скоростью
+  if(DOWN_SIGNAL == 0)
+    if(preheatOn()) current_lift_motion_velocity = -sensetivity; // вниз, с уставкой
+    else current_lift_motion_velocity = downVelocity; // вниз, с максимальной скоростью
   if(UP_SIGNAL == 0)   
-    current_lift_motion_velocity = upVelocity; // вверх, с максимальной скоростью 
+    if(preheatOn()) current_lift_motion_velocity = sensetivity; // вверх, с уставкой
+    else current_lift_motion_velocity = upVelocity; // вверх, с максимальной скоростью 
 
   return current_lift_motion_velocity;
 }
@@ -158,7 +179,11 @@ signed int GetLiftMotionVelocity(signed int current_delta){
 #pragma vector = ADC1_EOC_vector
 __interrupt void ADC1_EOC_IRQHandler(){
   if(ADC_CSR_EOC == 1){
-    current_voltage = ADC_DRH; //    Extract the ADC reading.
+    unsigned int low, high;
+    low  = ADC_DRL;  //    Extract the ADC low byte
+    high = ADC_DRH;  //    Extract the ADC hi byte
+    current_voltage = (high<<8) + low;
+    current_voltage = current_voltage>>7;
     signed int delta = 0;
     if(current_voltage > VOLTAGE_LOW_LIMIT)
       if(current_voltage < VOLTAGE_HIGH_LIMIT)

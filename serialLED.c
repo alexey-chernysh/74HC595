@@ -27,7 +27,8 @@ static unsigned char int_to_7leds[] = {
   MAKE_BINARY(1,1,1,1,1,1,0,1), // -
   MAKE_BINARY(1,1,1,1,1,1,1,1), // space
   MAKE_BINARY(0,0,0,1,0,0,0,1), // A
-  MAKE_BINARY(1,0,0,1,0,0,0,1)  // H
+  MAKE_BINARY(1,0,0,1,0,0,0,1), // H
+  MAKE_BINARY(0,1,0,0,1,0,0,1)  // S
 };
 
 // MR/сброс подтянут к VCC, 
@@ -124,6 +125,39 @@ void SetDisplayNumeric(unsigned char lead_char, unsigned char num);
 
 static unsigned char last_value2display = 0; 
 static unsigned char new_value2display = 0; 
+
+void displayValues(){
+      if(preheatOn()) SetValue2Display(3); 
+      new_value2display = GetValue2Display();
+      if(preheatOn()) SetValue2Display(3); 
+      switch(new_value2display){
+      case 0:
+        SetDisplayNumeric(11, GetCurrentVoltage());
+        break;
+      case 1:
+        SetDisplayNumeric(12, GetAVS());
+        break;
+      case 2:
+        SetDisplayNumeric(13, GetIHS());
+        break;
+      case 3:
+        SetDisplayNumeric(14, GetTLS());
+        break;
+      default:
+        break;
+      };
+      if(last_value2display == new_value2display){
+        param_display_counter++;
+        if(param_display_counter > PARAM_DISPLAY_COUNTER_LIMIT){
+          param_display_counter = 0;
+          SetValue2Display(0);
+        };
+      } else {
+        param_display_counter = 0;
+        last_value2display = new_value2display;
+      };
+}
+
 // Вектор прерывания по обновлению или переполнению Таймера3
 #pragma vector = TIM3_OVR_UIF_vector
 __interrupt void TIM3_OVR_UIF_handler(void)
@@ -155,28 +189,7 @@ __interrupt void TIM3_OVR_UIF_handler(void)
     };
     if(value_refresh_counter > VALUE_REFRESH_COUNTER_LIMIT){
       value_refresh_counter = 0;
-      new_value2display = GetValue2Display();
-      switch(new_value2display){
-      case 0:
-        SetDisplayNumeric(11, GetCurrentVoltage());
-        break;
-      case 1:
-        SetDisplayNumeric(12, GetAVS());
-        break;
-      case 2:
-        SetDisplayNumeric(13, GetIHS());
-        break;
-      };
-      if(last_value2display == new_value2display){
-        param_display_counter++;
-        if(param_display_counter > PARAM_DISPLAY_COUNTER_LIMIT){
-          param_display_counter = 0;
-          SetValue2Display(0);
-        };
-      } else {
-        param_display_counter = 0;
-        last_value2display = new_value2display;
-      };
+      displayValues();
       RestartADC();
     };
   }  

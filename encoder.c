@@ -137,6 +137,13 @@ __interrupt void EXTI_PORTD_IRQHandler(void)
       if(tmp >= 0) 
         if(tmp <= 255) SetIHS((unsigned char)tmp);
       break;
+    case 3:
+      tmp = GetTLS() + change;
+      if(tmp >= 0) 
+        if(tmp <= 127) SetTLS((unsigned char)tmp);
+      break;
+    default:
+      break;
     }
   }
 }
