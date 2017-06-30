@@ -7,102 +7,75 @@
     <name>Debug</name>
     <outputs>
       <file>$PROJ_DIR$\Debug\Obj\74&#x420;&#x421;595.pbd</file>
-      <file>$TOOLKIT_DIR$\inc\io_macros.h</file>
-      <file>$PROJ_DIR$\Debug\Obj\main.__cstat.et</file>
-      <file>$PROJ_DIR$\clock.h</file>
-      <file>$PROJ_DIR$\clock.c</file>
-      <file>$PROJ_DIR$\encoder.h</file>
-      <file>$PROJ_DIR$\eeprom.h</file>
-      <file>$PROJ_DIR$\encoder.c</file>
-      <file>$PROJ_DIR$\main.c</file>
-      <file>$PROJ_DIR$\common.h</file>
-      <file>$PROJ_DIR$\eeprom.c</file>
-      <file>$PROJ_DIR$\motor_control.h</file>
-      <file>$PROJ_DIR$\Debug\Obj\eeprom.pbi</file>
-      <file>$PROJ_DIR$\adc.h</file>
       <file>$PROJ_DIR$\motor_control.c</file>
+      <file>$PROJ_DIR$\main.c</file>
+      <file>$PROJ_DIR$\eeprom.h</file>
+      <file>$PROJ_DIR$\eeprom.c</file>
+      <file>$PROJ_DIR$\common.h</file>
+      <file>$PROJ_DIR$\clock.c</file>
+      <file>$PROJ_DIR$\encoder.c</file>
       <file>$PROJ_DIR$\adc.c</file>
+      <file>$PROJ_DIR$\adc.h</file>
+      <file>$PROJ_DIR$\encoder.h</file>
+      <file>$PROJ_DIR$\clock.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\serialLED.o</file>
       <file>$PROJ_DIR$\Debug\Obj\clock.o</file>
       <file>$PROJ_DIR$\Debug\Exe\74&#x420;&#x421;595.out</file>
-      <file>$PROJ_DIR$\Debug\Obj\adc.__cstat.et</file>
-      <file>$PROJ_DIR$\Debug\Obj\motor_control.__cstat.et</file>
-      <file>$PROJ_DIR$\Debug\Obj\eeprom.o</file>
-      <file>$PROJ_DIR$\Debug\Obj\clock.__cstat.et</file>
-      <file>$PROJ_DIR$\Debug\Obj\main.pbi</file>
-      <file>$TOOLKIT_DIR$\lib\dbgstm8mmd.a</file>
-      <file>$PROJ_DIR$\serialLED.c</file>
+      <file>$PROJ_DIR$\Debug\Obj\encoder.__cstat.et</file>
+      <file>$PROJ_DIR$\Debug\Obj\serialLED.__cstat.et</file>
+      <file>$PROJ_DIR$\Debug\Obj\motor_control.o</file>
       <file>$TOOLKIT_DIR$\inc\c\stdbool.h</file>
       <file>$PROJ_DIR$\Debug\Obj\main.o</file>
-      <file>$PROJ_DIR$\serialLED.h</file>
-      <file>$TOOLKIT_DIR$\config\lnkstm8s105k4.icf</file>
-      <file>$PROJ_DIR$\Debug\Obj\motor_control.o</file>
-      <file>$PROJ_DIR$\Debug\Obj\clock.pbi</file>
-      <file>$PROJ_DIR$\Debug\Obj\adc.o</file>
-      <file>$PROJ_DIR$\Debug\Obj\serialLED.__cstat.et</file>
-      <file>$PROJ_DIR$\Debug\List\74&#x420;&#x421;595.map</file>
+      <file>$TOOLKIT_DIR$\inc\io_macros.h</file>
       <file>$PROJ_DIR$\Debug\Obj\motor_control.pbi</file>
-      <file>$PROJ_DIR$\Debug\Obj\serialLED.pbi</file>
-      <file>$PROJ_DIR$\Debug\Obj\serialLED.o</file>
+      <file>$PROJ_DIR$\Debug\Obj\eeprom.__cstat.et</file>
+      <file>$PROJ_DIR$\Debug\Obj\eeprom.o</file>
+      <file>$PROJ_DIR$\Debug\Obj\main.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\clock.__cstat.et</file>
+      <file>$TOOLKIT_DIR$\lib\dlstm8mmn.a</file>
+      <file>$PROJ_DIR$\Debug\List\74&#x420;&#x421;595.map</file>
+      <file>$TOOLKIT_DIR$\inc\c\intrinsics.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\clock.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\adc.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\adc.o</file>
+      <file>$PROJ_DIR$\motor_control.h</file>
       <file>$PROJ_DIR$\Debug\Obj\encoder.o</file>
       <file>$PROJ_DIR$\Debug\Obj\encoder.pbi</file>
-      <file>$PROJ_DIR$\Debug\Obj\adc.pbi</file>
-      <file>$PROJ_DIR$\Debug\Obj\encoder.__cstat.et</file>
-      <file>$PROJ_DIR$\Debug\Obj\eeprom.__cstat.et</file>
-      <file>$TOOLKIT_DIR$\lib\dlstm8mmn.a</file>
+      <file>$PROJ_DIR$\serialLED.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\motor_control.__cstat.et</file>
+      <file>$PROJ_DIR$\Debug\Obj\adc.__cstat.et</file>
+      <file>$TOOLKIT_DIR$\config\lnkstm8s105k4.icf</file>
+      <file>$PROJ_DIR$\serialLED.c</file>
+      <file>$PROJ_DIR$\Debug\Obj\serialLED.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\eeprom.pbi</file>
+      <file>$TOOLKIT_DIR$\lib\dbgstm8mmd.a</file>
       <file>$TOOLKIT_DIR$\inc\iostm8s105k4.h</file>
-      <file>$TOOLKIT_DIR$\inc\c\intrinsics.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\main.__cstat.et</file>
     </outputs>
     <file>
-      <name>$PROJ_DIR$\clock.c</name>
+      <name>$PROJ_DIR$\motor_control.c</name>
       <outputs>
         <tool>
-          <name>ICCSTM8</name>
-          <file> 16</file>
-        </tool>
-        <tool>
-          <name>__cstat</name>
+          <name>BICOMP</name>
           <file> 21</file>
         </tool>
         <tool>
-          <name>BICOMP</name>
-          <file> 30</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
           <name>ICCSTM8</name>
-          <file> 9 44 43 1 25</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 43 44 1 9 25</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\encoder.c</name>
-      <outputs>
-        <tool>
-          <name>ICCSTM8</name>
-          <file> 37</file>
+          <file> 17</file>
         </tool>
         <tool>
           <name>__cstat</name>
-          <file> 40</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 38</file>
+          <file> 36</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
-          <name>ICCSTM8</name>
-          <file> 9 44 43 1 25 6 5</file>
+          <name>BICOMP</name>
+          <file> 43 28 20 5 18</file>
         </tool>
         <tool>
-          <name>BICOMP</name>
-          <file> 25 5 44 6 43 1 9</file>
+          <name>ICCSTM8</name>
+          <file> 5 28 43 20 18</file>
         </tool>
       </inputs>
     </file>
@@ -110,26 +83,26 @@
       <name>$PROJ_DIR$\main.c</name>
       <outputs>
         <tool>
+          <name>BICOMP</name>
+          <file> 24</file>
+        </tool>
+        <tool>
           <name>ICCSTM8</name>
-          <file> 26</file>
+          <file> 19</file>
         </tool>
         <tool>
           <name>__cstat</name>
-          <file> 2</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 22</file>
+          <file> 44</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
-          <name>ICCSTM8</name>
-          <file> 9 44 43 1 25 3 11 5 27 13 6</file>
+          <name>BICOMP</name>
+          <file> 43 28 20 5 18 11 32 10 35 9 3</file>
         </tool>
         <tool>
-          <name>BICOMP</name>
-          <file> 43 44 1 9 25 3 11 5 27 13 6</file>
+          <name>ICCSTM8</name>
+          <file> 5 28 43 20 18 11 32 10 35 9 3</file>
         </tool>
       </inputs>
     </file>
@@ -137,53 +110,80 @@
       <name>$PROJ_DIR$\eeprom.c</name>
       <outputs>
         <tool>
-          <name>ICCSTM8</name>
-          <file> 20</file>
-        </tool>
-        <tool>
-          <name>__cstat</name>
+          <name>BICOMP</name>
           <file> 41</file>
         </tool>
         <tool>
-          <name>BICOMP</name>
-          <file> 12</file>
+          <name>ICCSTM8</name>
+          <file> 23</file>
+        </tool>
+        <tool>
+          <name>__cstat</name>
+          <file> 22</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
-          <name>ICCSTM8</name>
-          <file> 9 44 43 1 25 13</file>
+          <name>BICOMP</name>
+          <file> 43 28 20 5 18 9</file>
         </tool>
         <tool>
-          <name>BICOMP</name>
-          <file> 43 44 1 9 25 13</file>
+          <name>ICCSTM8</name>
+          <file> 5 28 43 20 18 9</file>
         </tool>
       </inputs>
     </file>
     <file>
-      <name>$PROJ_DIR$\motor_control.c</name>
+      <name>$PROJ_DIR$\clock.c</name>
       <outputs>
         <tool>
-          <name>ICCSTM8</name>
+          <name>BICOMP</name>
           <file> 29</file>
         </tool>
         <tool>
-          <name>__cstat</name>
-          <file> 19</file>
+          <name>ICCSTM8</name>
+          <file> 13</file>
         </tool>
         <tool>
-          <name>BICOMP</name>
-          <file> 34</file>
+          <name>__cstat</name>
+          <file> 25</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
-          <name>ICCSTM8</name>
-          <file> 9 44 43 1 25</file>
+          <name>BICOMP</name>
+          <file> 43 28 20 5 18</file>
         </tool>
         <tool>
+          <name>ICCSTM8</name>
+          <file> 5 28 43 20 18</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\encoder.c</name>
+      <outputs>
+        <tool>
           <name>BICOMP</name>
-          <file> 43 44 1 9 25</file>
+          <file> 34</file>
+        </tool>
+        <tool>
+          <name>ICCSTM8</name>
+          <file> 33</file>
+        </tool>
+        <tool>
+          <name>__cstat</name>
+          <file> 15</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 18 10 28 3 43 20 5</file>
+        </tool>
+        <tool>
+          <name>ICCSTM8</name>
+          <file> 5 28 43 20 18 3 10</file>
         </tool>
       </inputs>
     </file>
@@ -191,68 +191,26 @@
       <name>$PROJ_DIR$\adc.c</name>
       <outputs>
         <tool>
+          <name>BICOMP</name>
+          <file> 30</file>
+        </tool>
+        <tool>
           <name>ICCSTM8</name>
           <file> 31</file>
         </tool>
         <tool>
           <name>__cstat</name>
-          <file> 18</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 39</file>
+          <file> 37</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
-          <name>ICCSTM8</name>
-          <file> 9 44 43 1 25 6 11</file>
-        </tool>
-        <tool>
           <name>BICOMP</name>
-          <file> 44 11 25 6 43 1 9</file>
+          <file> 28 32 18 3 43 20 5</file>
         </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\Debug\Exe\74&#x420;&#x421;595.out</name>
-      <outputs>
-        <tool>
-          <name>ILINK</name>
-          <file> 33</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ILINK</name>
-          <file> 28 31 16 20 37 26 29 36 42 23</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\serialLED.c</name>
-      <outputs>
         <tool>
           <name>ICCSTM8</name>
-          <file> 36</file>
-        </tool>
-        <tool>
-          <name>__cstat</name>
-          <file> 32</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 35</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICCSTM8</name>
-          <file> 9 44 43 1 25 5 13 6</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 13 43 1 25 5 6 44 9</file>
+          <file> 5 28 43 20 18 3 32</file>
         </tool>
       </inputs>
     </file>
@@ -261,64 +219,137 @@
       <outputs>
         <tool>
           <name>ILINK</name>
-          <file> 17 33</file>
+          <file> 14 27</file>
         </tool>
       </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Debug\Exe\74&#x420;&#x421;595.out</name>
+      <outputs>
+        <tool>
+          <name>ILINK</name>
+          <file> 27</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ILINK</name>
+          <file> 38 31 13 23 33 19 17 12 26 42</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\serialLED.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 40</file>
+        </tool>
+        <tool>
+          <name>ICCSTM8</name>
+          <file> 12</file>
+        </tool>
+        <tool>
+          <name>__cstat</name>
+          <file> 16</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 9 43 20 18 10 3 28 5</file>
+        </tool>
+        <tool>
+          <name>ICCSTM8</name>
+          <file> 5 28 43 20 18 10 9 3</file>
+        </tool>
+      </inputs>
     </file>
   </configuration>
   <configuration>
     <name>Release</name>
     <outputs>
-      <file>$TOOLKIT_DIR$\inc\io_macros.h</file>
-      <file>$PROJ_DIR$\clock.h</file>
-      <file>$PROJ_DIR$\clock.c</file>
-      <file>$PROJ_DIR$\encoder.h</file>
-      <file>$PROJ_DIR$\eeprom.h</file>
-      <file>$PROJ_DIR$\encoder.c</file>
-      <file>$PROJ_DIR$\main.c</file>
-      <file>$PROJ_DIR$\common.h</file>
-      <file>$PROJ_DIR$\eeprom.c</file>
-      <file>$PROJ_DIR$\motor_control.h</file>
-      <file>$PROJ_DIR$\adc.h</file>
-      <file>$PROJ_DIR$\motor_control.c</file>
-      <file>$PROJ_DIR$\adc.c</file>
-      <file>$PROJ_DIR$\serialLED.c</file>
-      <file>$TOOLKIT_DIR$\inc\c\stdbool.h</file>
-      <file>$PROJ_DIR$\serialLED.h</file>
-      <file>$TOOLKIT_DIR$\config\lnkstm8s105k4.icf</file>
-      <file>$PROJ_DIR$\Release\Obj\adc.__cstat.et</file>
-      <file>$PROJ_DIR$\Release\Obj\encoder.pbi</file>
-      <file>$PROJ_DIR$\Release\Exe\74&#x420;&#x421;595.hex</file>
-      <file>$PROJ_DIR$\Release\Obj\eeprom.o</file>
-      <file>$PROJ_DIR$\Release\Exe\74&#x420;&#x421;595.out</file>
+      <file>$PROJ_DIR$\Release\Obj\motor_control.o</file>
       <file>$PROJ_DIR$\Release\Obj\serialLED.o</file>
-      <file>$PROJ_DIR$\Release\Obj\74&#x420;&#x421;595.pbd</file>
-      <file>$PROJ_DIR$\Release\Obj\adc.o</file>
-      <file>$PROJ_DIR$\Release\Obj\clock.__cstat.et</file>
-      <file>$PROJ_DIR$\Release\Obj\clock.pbi</file>
-      <file>$PROJ_DIR$\Release\Obj\motor_control.__cstat.et</file>
-      <file>$TOOLKIT_DIR$\lib\dlstm8smn.a</file>
+      <file>$PROJ_DIR$\motor_control.c</file>
+      <file>$PROJ_DIR$\main.c</file>
+      <file>$PROJ_DIR$\eeprom.h</file>
+      <file>$PROJ_DIR$\eeprom.c</file>
+      <file>$PROJ_DIR$\common.h</file>
+      <file>$PROJ_DIR$\Release\Obj\motor_control.pbi</file>
+      <file>$PROJ_DIR$\clock.c</file>
+      <file>$PROJ_DIR$\encoder.c</file>
+      <file>$PROJ_DIR$\adc.c</file>
+      <file>$PROJ_DIR$\adc.h</file>
+      <file>$PROJ_DIR$\encoder.h</file>
+      <file>$PROJ_DIR$\clock.h</file>
+      <file>$PROJ_DIR$\Release\Obj\encoder.__cstat.et</file>
       <file>$PROJ_DIR$\Release\Obj\clock.o</file>
+      <file>$PROJ_DIR$\Release\Obj\serialLED.__cstat.et</file>
+      <file>$PROJ_DIR$\Release\Obj\adc.o</file>
+      <file>$PROJ_DIR$\Release\Obj\74&#x420;&#x421;595.pbd</file>
+      <file>$PROJ_DIR$\Release\Obj\adc.__cstat.et</file>
+      <file>$PROJ_DIR$\Release\Obj\motor_control.__cstat.et</file>
+      <file>$PROJ_DIR$\Release\Obj\clock.__cstat.et</file>
+      <file>$PROJ_DIR$\Release\Obj\encoder.pbi</file>
+      <file>$PROJ_DIR$\Release\Exe\74&#x420;&#x421;595.out</file>
       <file>$PROJ_DIR$\Release\Obj\serialLED.pbi</file>
       <file>$PROJ_DIR$\Release\Obj\main.__cstat.et</file>
-      <file>$PROJ_DIR$\Release\Obj\main.o</file>
-      <file>$PROJ_DIR$\Release\Obj\motor_control.pbi</file>
-      <file>$PROJ_DIR$\Release\Obj\eeprom.__cstat.et</file>
+      <file>$PROJ_DIR$\Release\Obj\clock.pbi</file>
       <file>$PROJ_DIR$\Release\Obj\encoder.o</file>
+      <file>$PROJ_DIR$\Release\Obj\eeprom.__cstat.et</file>
+      <file>$PROJ_DIR$\Release\Obj\main.o</file>
+      <file>$TOOLKIT_DIR$\lib\dbgstm8smn.a</file>
+      <file>$PROJ_DIR$\Release\List\74&#x420;&#x421;595.map</file>
+      <file>$TOOLKIT_DIR$\lib\dlstm8smn.a</file>
+      <file>$TOOLKIT_DIR$\inc\c\stdbool.h</file>
+      <file>$PROJ_DIR$\Release\Exe\74&#x420;&#x421;595.hex</file>
+      <file>$TOOLKIT_DIR$\inc\io_macros.h</file>
       <file>$PROJ_DIR$\Release\Obj\eeprom.pbi</file>
       <file>$PROJ_DIR$\Release\Obj\main.pbi</file>
-      <file>$PROJ_DIR$\Release\Obj\serialLED.__cstat.et</file>
       <file>$PROJ_DIR$\Release\Obj\adc.pbi</file>
-      <file>$TOOLKIT_DIR$\inc\iostm8s105k4.h</file>
-      <file>$TOOLKIT_DIR$\lib\dbgstm8smn.a</file>
-      <file>$PROJ_DIR$\Release\Obj\motor_control.o</file>
-      <file>$PROJ_DIR$\Release\List\74&#x420;&#x421;595.map</file>
-      <file>$PROJ_DIR$\Release\Obj\encoder.__cstat.et</file>
       <file>$TOOLKIT_DIR$\inc\c\intrinsics.h</file>
+      <file>$PROJ_DIR$\Release\Obj\eeprom.o</file>
+      <file>$PROJ_DIR$\motor_control.h</file>
+      <file>$PROJ_DIR$\serialLED.h</file>
+      <file>$TOOLKIT_DIR$\config\lnkstm8s105k4.icf</file>
+      <file>$PROJ_DIR$\serialLED.c</file>
+      <file>$TOOLKIT_DIR$\inc\iostm8s105k4.h</file>
     </outputs>
     <file>
-      <name>$PROJ_DIR$\clock.c</name>
+      <name>$PROJ_DIR$\motor_control.c</name>
       <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 7</file>
+        </tool>
+        <tool>
+          <name>ICCSTM8</name>
+          <file> 0</file>
+        </tool>
+        <tool>
+          <name>__cstat</name>
+          <file> 20</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 45 39 35 6 33</file>
+        </tool>
+        <tool>
+          <name>ICCSTM8</name>
+          <file> 6 39 45 35 33</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\main.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 37</file>
+        </tool>
         <tool>
           <name>ICCSTM8</name>
           <file> 29</file>
@@ -327,73 +358,15 @@
           <name>__cstat</name>
           <file> 25</file>
         </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 26</file>
-        </tool>
       </outputs>
       <inputs>
         <tool>
-          <name>ICCSTM8</name>
-          <file> 7 45 40 0 14</file>
-        </tool>
-        <tool>
           <name>BICOMP</name>
-          <file> 40 45 0 7 14</file>
+          <file> 45 39 35 6 33 13 41 12 42 11 4</file>
         </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\encoder.c</name>
-      <outputs>
         <tool>
           <name>ICCSTM8</name>
-          <file> 35</file>
-        </tool>
-        <tool>
-          <name>__cstat</name>
-          <file> 44</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 18</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICCSTM8</name>
-          <file> 7 45 40 0 14 4 3</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 40 45 0 7 14 4 3</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\main.c</name>
-      <outputs>
-        <tool>
-          <name>ICCSTM8</name>
-          <file> 32</file>
-        </tool>
-        <tool>
-          <name>__cstat</name>
-          <file> 31</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 37</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICCSTM8</name>
-          <file> 7 45 40 0 14 1 9 3 15 10 4</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 40 45 0 7 14 1 9 3 15 10 4</file>
+          <file> 6 39 45 35 33 13 41 12 42 11 4</file>
         </tool>
       </inputs>
     </file>
@@ -401,53 +374,80 @@
       <name>$PROJ_DIR$\eeprom.c</name>
       <outputs>
         <tool>
+          <name>BICOMP</name>
+          <file> 36</file>
+        </tool>
+        <tool>
           <name>ICCSTM8</name>
-          <file> 20</file>
+          <file> 40</file>
         </tool>
         <tool>
           <name>__cstat</name>
-          <file> 34</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 36</file>
+          <file> 28</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
-          <name>ICCSTM8</name>
-          <file> 7 45 40 0 14 10</file>
+          <name>BICOMP</name>
+          <file> 45 39 35 6 33 11</file>
         </tool>
         <tool>
-          <name>BICOMP</name>
-          <file> 40 45 0 7 14 10</file>
+          <name>ICCSTM8</name>
+          <file> 6 39 45 35 33 11</file>
         </tool>
       </inputs>
     </file>
     <file>
-      <name>$PROJ_DIR$\motor_control.c</name>
+      <name>$PROJ_DIR$\clock.c</name>
       <outputs>
         <tool>
+          <name>BICOMP</name>
+          <file> 26</file>
+        </tool>
+        <tool>
           <name>ICCSTM8</name>
-          <file> 42</file>
+          <file> 15</file>
         </tool>
         <tool>
           <name>__cstat</name>
-          <file> 27</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 33</file>
+          <file> 21</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
-          <name>ICCSTM8</name>
-          <file> 7 45 40 0 14</file>
+          <name>BICOMP</name>
+          <file> 45 39 35 6 33</file>
         </tool>
         <tool>
+          <name>ICCSTM8</name>
+          <file> 6 39 45 35 33</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\encoder.c</name>
+      <outputs>
+        <tool>
           <name>BICOMP</name>
-          <file> 40 45 0 7 14</file>
+          <file> 22</file>
+        </tool>
+        <tool>
+          <name>ICCSTM8</name>
+          <file> 27</file>
+        </tool>
+        <tool>
+          <name>__cstat</name>
+          <file> 14</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 33 12 39 4 45 35 6</file>
+        </tool>
+        <tool>
+          <name>ICCSTM8</name>
+          <file> 6 39 45 35 33 4 12</file>
         </tool>
       </inputs>
     </file>
@@ -455,53 +455,26 @@
       <name>$PROJ_DIR$\adc.c</name>
       <outputs>
         <tool>
-          <name>ICCSTM8</name>
-          <file> 24</file>
-        </tool>
-        <tool>
-          <name>__cstat</name>
-          <file> 17</file>
-        </tool>
-        <tool>
           <name>BICOMP</name>
-          <file> 39</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICCSTM8</name>
-          <file> 7 45 40 0 14 4 9</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 14 9 45 4 40 0 7</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\serialLED.c</name>
-      <outputs>
-        <tool>
-          <name>ICCSTM8</name>
-          <file> 22</file>
-        </tool>
-        <tool>
-          <name>__cstat</name>
           <file> 38</file>
         </tool>
         <tool>
-          <name>BICOMP</name>
-          <file> 30</file>
+          <name>ICCSTM8</name>
+          <file> 17</file>
+        </tool>
+        <tool>
+          <name>__cstat</name>
+          <file> 19</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
-          <name>ICCSTM8</name>
-          <file> 7 45 40 0 14 3 10 4</file>
+          <name>BICOMP</name>
+          <file> 39 41 33 4 45 35 6</file>
         </tool>
         <tool>
-          <name>BICOMP</name>
-          <file> 0 10 40 3 4 45 14 7</file>
+          <name>ICCSTM8</name>
+          <file> 6 39 45 35 33 4 41</file>
         </tool>
       </inputs>
     </file>
@@ -510,7 +483,7 @@
       <outputs>
         <tool>
           <name>ILINK</name>
-          <file> 21 43</file>
+          <file> 23 31</file>
         </tool>
       </outputs>
     </file>
@@ -519,17 +492,44 @@
       <outputs>
         <tool>
           <name>OBJCOPY</name>
-          <file> 19</file>
+          <file> 34</file>
         </tool>
         <tool>
           <name>ILINK</name>
-          <file> 43</file>
+          <file> 31</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>ILINK</name>
-          <file> 16 24 29 20 35 32 42 22 28 41</file>
+          <file> 43 17 15 40 27 29 0 1 32 30</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\serialLED.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 24</file>
+        </tool>
+        <tool>
+          <name>ICCSTM8</name>
+          <file> 1</file>
+        </tool>
+        <tool>
+          <name>__cstat</name>
+          <file> 16</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 11 45 35 33 12 4 39 6</file>
+        </tool>
+        <tool>
+          <name>ICCSTM8</name>
+          <file> 6 39 45 35 33 12 11 4</file>
         </tool>
       </inputs>
     </file>

@@ -101,6 +101,8 @@ static signed long up_after_collision_counter = 0;
 static signed long up_after_collision_counter_limit = 50000L;
 static signed long down_for_plate_collision_counter = 0;
 static signed long down_for_plate_collision_counter_limit = 500000L;
+static signed long positioning_complete_counter = 0;
+static signed long positioning_complete_counter_limit = 500L;
 static bool preheat = false;
 
 bool preheatOn(){
@@ -115,14 +117,14 @@ void setSensetivity(unsigned char s){
 void setInitialHeight(char newValue){
   up_after_collision_counter_limit = 200L * newValue;
 }
-
+/*
 void delay(){
-  int j=0;
-  for(int i=0; i<300; i++){
-    j++;
-  }
+  for(long j= 0; j <5; j++)
+    for(long i=0; i<32000; i++){
+      positioning_complete_counter++;
+    }
 }
-
+*/
 static signed int upVelocity = 126;
 static signed int downVelocity = -126;
 
@@ -134,11 +136,14 @@ signed int GetLiftMotionVelocity(signed int current_delta){
   
   if(AUTO_SIGNAL == 0) 
     current_lift_motion_velocity = current_delta;
-  
-  POSITIONING_COMPLETE_SIGNAL = 1; // сбросить сигнал завершени€ "теста на касание"
+
+  if(positioning_complete_counter <= 0) POSITIONING_COMPLETE_SIGNAL = 1; // сбросить сигнал завершени€ "теста на касание"
+  else positioning_complete_counter--;
 
   // обработка команды на начальное позиционирование
-  bool isInitialPositioning = ((INITIAL_POSITIONING_SIGNAL == 0)||(INITIAL_POSITIONING_BUTTON == 0));
+  bool isInitialPositioning = (((INITIAL_POSITIONING_SIGNAL == 0)
+                               ||(INITIAL_POSITIONING_BUTTON == 0))
+                               &&(positioning_complete_counter == 0));
   if(isInitialPositioning){
     // если есть сигнал "касание" от контроллера или кнопки
     down_for_plate_collision_counter = down_for_plate_collision_counter_limit; // устанавливаем счетчик на величину, пропорцион€льную таймауту
@@ -159,10 +164,11 @@ signed int GetLiftMotionVelocity(signed int current_delta){
   if(up_after_collision_counter > 0) { // вверх, в течении up_after_collision_counter_limit циклов
     current_lift_motion_velocity = upVelocity;  // вверх, с максимальной скоростью
     up_after_collision_counter--;
-    if(up_after_collision_counter == 0){
+    if(up_after_collision_counter <= 3){
       POSITIONING_COMPLETE_SIGNAL = 0; // выдать сигнал завершени€ "теста на касание"
-      delay();
-    }
+      positioning_complete_counter = positioning_complete_counter_limit; // в течении заданного количества циклов
+//      delay();
+    } 
   }
   
   // обработка сигналов контроллера "резак вверх" и "резак вниз"
