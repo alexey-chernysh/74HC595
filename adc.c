@@ -101,9 +101,8 @@ static signed long up_after_collision_counter = 0;
 static signed long up_after_collision_counter_limit = 50000L;
 static signed long down_for_plate_collision_counter = 0;
 static signed long down_for_plate_collision_counter_limit = 500000L;
-static signed long positioning_complete_counter = 0;
-static signed long positioning_complete_counter_limit = 500L;
 static bool preheat = false;
+static bool waiting_for_IP_signal_released = false;
 
 bool preheatOn(){
   return preheat;
@@ -117,14 +116,7 @@ void setSensetivity(unsigned char s){
 void setInitialHeight(char newValue){
   up_after_collision_counter_limit = 200L * newValue;
 }
-/*
-void delay(){
-  for(long j= 0; j <5; j++)
-    for(long i=0; i<32000; i++){
-      positioning_complete_counter++;
-    }
-}
-*/
+
 static signed int upVelocity = 126;
 static signed int downVelocity = -126;
 
@@ -137,44 +129,54 @@ signed int GetLiftMotionVelocity(signed int current_delta){
   if(AUTO_SIGNAL == 0) 
     current_lift_motion_velocity = current_delta;
 
-  if(positioning_complete_counter <= 0) POSITIONING_COMPLETE_SIGNAL = 1; // сбросить сигнал завершения "теста на касание"
-  else positioning_complete_counter--;
+  bool isInitialPositioning = false;
+  
+  // обработка ожидания завершения начального позиционирования
+  if(waiting_for_IP_signal_released){
+    // удерживаем сигнал завершения "теста на касание"
+    POSITIONING_COMPLETE_SIGNAL = 1;
+    if(INITIAL_POSITIONING_SIGNAL == 1) 
+      waiting_for_IP_signal_released = false;
+  } else {
+    // сбросить сигнал завершения "теста на касание"
+    POSITIONING_COMPLETE_SIGNAL = 0;
+    isInitialPositioning = ((INITIAL_POSITIONING_SIGNAL == 0)
+                          ||(INITIAL_POSITIONING_BUTTON == 0));
+  
+  };
 
-  // обработка команды на начальное позиционирование
-  bool isInitialPositioning = (((INITIAL_POSITIONING_SIGNAL == 0)
-                               ||(INITIAL_POSITIONING_BUTTON == 0))
-                               &&(positioning_complete_counter == 0));
   if(isInitialPositioning){
     // если есть сигнал "касание" от контроллера или кнопки
     down_for_plate_collision_counter = down_for_plate_collision_counter_limit; // устанавливаем счетчик на величину, пропорционяльную таймауту
   }
 
-  if(down_for_plate_collision_counter > 0) { // вниз, пока не случится коллизия или не обнулится счетяик
+  if(down_for_plate_collision_counter > 0) { // вниз, пока не случится коллизия или не обнулится счетчик
     current_lift_motion_velocity = downVelocity; // вниз на максимальной скорости
     down_for_plate_collision_counter--;  // уменшаем счетчик ожидания таймаута
   }
   
-  // обрабатываем значание датчика прикосновения
+  // обработка сигналов контроллера "резак вниз"
+  if(DOWN_SIGNAL == 0)
+    if(preheatOn()) current_lift_motion_velocity = -sensetivity; // вниз, с уставкой
+    else current_lift_motion_velocity = downVelocity; // вниз, с максимальной скоростью
+
+    // обрабатываем значание датчика прикосновения
   if(COLLISION_SIGNAL > 0){ // сработка датчика прикосновения с листом
-    down_for_plate_collision_counter = 0;  // завершаем движение вниз
-    if(up_after_collision_counter <= 0) 
-      up_after_collision_counter = up_after_collision_counter_limit; // начинаем движение вверх после касания/коллизии
+    // завершаем движение вниз
+    down_for_plate_collision_counter = 0;  
+    // начинаем движение вверх после касания/коллизии
+    up_after_collision_counter = up_after_collision_counter_limit; 
   }; 
 
   if(up_after_collision_counter > 0) { // вверх, в течении up_after_collision_counter_limit циклов
     current_lift_motion_velocity = upVelocity;  // вверх, с максимальной скоростью
     up_after_collision_counter--;
-    if(up_after_collision_counter <= 3){
-      POSITIONING_COMPLETE_SIGNAL = 0; // выдать сигнал завершения "теста на касание"
-      positioning_complete_counter = positioning_complete_counter_limit; // в течении заданного количества циклов
-//      delay();
+    if(up_after_collision_counter <= 0){
+      waiting_for_IP_signal_released = true; // переходим в ожидание снятия сигнала начального позиционирования
     } 
   }
   
-  // обработка сигналов контроллера "резак вверх" и "резак вниз"
-  if(DOWN_SIGNAL == 0)
-    if(preheatOn()) current_lift_motion_velocity = -sensetivity; // вниз, с уставкой
-    else current_lift_motion_velocity = downVelocity; // вниз, с максимальной скоростью
+  // обработка сигналов контроллера "резак вверх"
   if(UP_SIGNAL == 0)   
     if(preheatOn()) current_lift_motion_velocity = sensetivity; // вверх, с уставкой
     else current_lift_motion_velocity = upVelocity; // вверх, с максимальной скоростью 
@@ -189,7 +191,8 @@ __interrupt void ADC1_EOC_IRQHandler(){
     low  = ADC_DRL;  //    Extract the ADC low byte
     high = ADC_DRH;  //    Extract the ADC hi byte
     current_voltage = (high<<8) + low;
-    current_voltage = current_voltage>>7;
+//    current_voltage = current_voltage>>7;  // 1/100 voltage divider
+    current_voltage = current_voltage>>8;  // 1/50 voltage divider
     signed int delta = 0;
     if(current_voltage > VOLTAGE_LOW_LIMIT)
       if(current_voltage < VOLTAGE_HIGH_LIMIT)
