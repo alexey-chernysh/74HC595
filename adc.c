@@ -101,6 +101,8 @@ static signed long up_after_collision_counter = 0;
 static signed long up_after_collision_counter_limit = 50000L;
 static signed long down_for_plate_collision_counter = 0;
 static signed long down_for_plate_collision_counter_limit = 500000L;
+static signed int upVelocity = 126;
+static signed int downVelocity = -126;
 static bool preheat = false;
 static bool waiting_for_IP_signal_released = false;
 
@@ -117,38 +119,55 @@ void setInitialHeight(char newValue){
   up_after_collision_counter_limit = 200L * newValue;
 }
 
-static signed int upVelocity = 126;
-static signed int downVelocity = -126;
-
 signed int GetLiftMotionVelocity(signed int current_delta){
   signed int current_lift_motion_velocity = 0;
   
   if(PREHEAT_SIGNAL == 0) preheat = true;
   else preheat = false;
   
+  bool initial_positioning_signal;
+  if(INITIAL_POSITIONING_SIGNAL == 0) initial_positioning_signal = true;
+  else initial_positioning_signal = false;
+  
+  bool initial_positioning_button;
+  if(INITIAL_POSITIONING_BUTTON == 0) initial_positioning_button = true;
+  else initial_positioning_button = false;
+  
+  bool collision_signal;
+  if(COLLISION_SIGNAL > 0) collision_signal = true;
+  else collision_signal = false;
+  
+  bool torch_down;
+  if(DOWN_SIGNAL == 0) torch_down = true;
+  else torch_down = false;
+    
+  bool torch_up;
+  if(UP_SIGNAL == 0) torch_up = true;
+  else torch_up = false;
+    
   if(AUTO_SIGNAL == 0) 
     current_lift_motion_velocity = current_delta;
 
-  bool isInitialPositioning = false;
-  
   // обработка ожидания завершения начального позиционирования
+  bool isInitialPositioning = false;
   if(waiting_for_IP_signal_released){
     // удерживаем сигнал завершения "теста на касание"
-    POSITIONING_COMPLETE_SIGNAL = 1;
-    if(INITIAL_POSITIONING_SIGNAL == 1) 
-      waiting_for_IP_signal_released = false;
-  } else {
-    // сбросить сигнал завершения "теста на касание"
     POSITIONING_COMPLETE_SIGNAL = 0;
-    isInitialPositioning = ((INITIAL_POSITIONING_SIGNAL == 0)
-                          ||(INITIAL_POSITIONING_BUTTON == 0));
-  
+    down_for_plate_collision_counter = 0;
+    if(!initial_positioning_signal) {
+      waiting_for_IP_signal_released = false;
+    };
+  } else {
+    POSITIONING_COMPLETE_SIGNAL = 1;
+    if(initial_positioning_signal) isInitialPositioning = true;
+    if(initial_positioning_button) isInitialPositioning = true;
   };
 
   if(isInitialPositioning){
     // если есть сигнал "касание" от контроллера или кнопки
-    down_for_plate_collision_counter = down_for_plate_collision_counter_limit; // устанавливаем счетчик на величину, пропорционяльную таймауту
-  }
+    // устанавливаем счетчик на величину, пропорционяльную таймауту
+    down_for_plate_collision_counter = down_for_plate_collision_counter_limit; 
+  };
 
   if(down_for_plate_collision_counter > 0) { // вниз, пока не случится коллизия или не обнулится счетчик
     current_lift_motion_velocity = downVelocity; // вниз на максимальной скорости
@@ -156,12 +175,12 @@ signed int GetLiftMotionVelocity(signed int current_delta){
   }
   
   // обработка сигналов контроллера "резак вниз"
-  if(DOWN_SIGNAL == 0)
-    if(preheatOn()) current_lift_motion_velocity = -sensetivity; // вниз, с уставкой
+  if(torch_down)
+    if(preheat) current_lift_motion_velocity = -sensetivity; // вниз, с уставкой
     else current_lift_motion_velocity = downVelocity; // вниз, с максимальной скоростью
 
     // обрабатываем значание датчика прикосновения
-  if(COLLISION_SIGNAL > 0){ // сработка датчика прикосновения с листом
+  if(collision_signal){ // сработка датчика прикосновения с листом
     // завершаем движение вниз
     down_for_plate_collision_counter = 0;  
     // начинаем движение вверх после касания/коллизии
@@ -172,13 +191,14 @@ signed int GetLiftMotionVelocity(signed int current_delta){
     current_lift_motion_velocity = upVelocity;  // вверх, с максимальной скоростью
     up_after_collision_counter--;
     if(up_after_collision_counter <= 0){
+      current_lift_motion_velocity = 0; // остановить подъем после коллизии
       waiting_for_IP_signal_released = true; // переходим в ожидание снятия сигнала начального позиционирования
     } 
   }
   
   // обработка сигналов контроллера "резак вверх"
-  if(UP_SIGNAL == 0)   
-    if(preheatOn()) current_lift_motion_velocity = sensetivity; // вверх, с уставкой
+  if(torch_up)   
+    if(preheat) current_lift_motion_velocity = sensetivity; // вверх, с уставкой
     else current_lift_motion_velocity = upVelocity; // вверх, с максимальной скоростью 
 
   return current_lift_motion_velocity;
