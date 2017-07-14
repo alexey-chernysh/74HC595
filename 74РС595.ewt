@@ -1968,6 +1968,12 @@
     <name>$PROJ_DIR$\encoder.h</name>
   </file>
   <file>
+    <name>$PROJ_DIR$\iwdg.c</name>
+  </file>
+  <file>
+    <name>$PROJ_DIR$\iwdg.h</name>
+  </file>
+  <file>
     <name>$PROJ_DIR$\main.c</name>
   </file>
   <file>

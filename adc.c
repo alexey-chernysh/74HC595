@@ -9,6 +9,7 @@
   */
 
 #include "common.h"
+#include "iwdg.h"
 #include "eeprom.h"
 #include "motor_control.h"
 
@@ -207,6 +208,7 @@ signed int GetLiftMotionVelocity(signed int current_delta){
 #pragma vector = ADC1_EOC_vector
 __interrupt void ADC1_EOC_IRQHandler(){
   if(ADC_CSR_EOC == 1){
+    GiveBoneIWDG();
     unsigned int low, high;
     low  = ADC_DRL;  //    Extract the ADC low byte
     high = ADC_DRH;  //    Extract the ADC hi byte

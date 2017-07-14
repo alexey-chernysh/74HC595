@@ -19,7 +19,7 @@
           
           
           
-        <Column0>317</Column0><Column1>40</Column1><Column2>40</Column2><Column3>40</Column3></ColumnWidths>
+        <Column0>296</Column0><Column1>40</Column1><Column2>40</Column2><Column3>40</Column3></ColumnWidths>
       </Workspace>
       <Disassembly>
         <col-names>
@@ -39,7 +39,7 @@
       
       
       
-    <Wnd0>
+    <Wnd2>
         <Tabs>
           <Tab>
             <Identity>TabID-13284-8198</Identity>
@@ -55,7 +55,7 @@
           </Tab>
         </Tabs>
         
-      <SelectedTab>0</SelectedTab></Wnd0><Wnd1>
+      <SelectedTab>0</SelectedTab></Wnd2><Wnd5>
         <Tabs>
           <Tab>
             <Identity>TabID-24033-8202</Identity>
@@ -67,20 +67,20 @@
           </Tab>
         </Tabs>
         
-      <SelectedTab>0</SelectedTab></Wnd1><Wnd3><Tabs><Tab><Identity>TabID-8236-24812</Identity><TabName>Watch 1</TabName><Factory>WATCH_1</Factory></Tab></Tabs><SelectedTab>0</SelectedTab></Wnd3><Wnd4><Tabs><Tab><Identity>TabID-21394-11253</Identity><TabName>Disassembly</TabName><Factory>Disassembly</Factory><Session/></Tab></Tabs><SelectedTab>0</SelectedTab></Wnd4></Windows>
+      <SelectedTab>0</SelectedTab></Wnd5><Wnd6><Tabs><Tab><Identity>TabID-8236-24812</Identity><TabName>Watch 1</TabName><Factory>WATCH_1</Factory></Tab></Tabs><SelectedTab>0</SelectedTab></Wnd6><Wnd7><Tabs><Tab><Identity>TabID-21394-11253</Identity><TabName>Disassembly</TabName><Factory>Disassembly</Factory><Session/></Tab></Tabs><SelectedTab>0</SelectedTab></Wnd7></Windows>
     <Editor>
       
       
       
       
-    <Pane><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\adc.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>183</YPos2><SelStart2>8262</SelStart2><SelEnd2>8262</SelEnd2></Tab><ActiveTab>0</ActiveTab></Pane><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
+    <Pane><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\adc.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>0</YPos2><SelStart2>428</SelStart2><SelEnd2>428</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\iwdg.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>0</YPos2><SelStart2>54</SelStart2><SelEnd2>54</SelEnd2></Tab><ActiveTab>1</ActiveTab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\iwdg.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>0</YPos2><SelStart2>73</SelStart2><SelEnd2>73</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\adc.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>0</YPos2><SelStart2>66</SelStart2><SelEnd2>66</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\common.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>3</YPos2><SelStart2>0</SelStart2><SelEnd2>0</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\main.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>0</YPos2><SelStart2>223</SelStart2><SelEnd2>223</SelEnd2></Tab></Pane><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
     <Positions>
       
       
       
       
       
-    <Top><Row0><Sizes><Toolbar-04E4C188><key>iaridepm.enu1</key></Toolbar-04E4C188></Sizes></Row0><Row1><Sizes><Toolbar-10E7E370><key>debuggergui.enu1</key></Toolbar-10E7E370></Sizes></Row1></Top><Left><Row0><Sizes><Wnd1><Rect><Top>-2</Top><Left>-2</Left><Bottom>526</Bottom><Right>417</Right><x>-2</x><y>-2</y><xscreen>200</xscreen><yscreen>200</yscreen><sizeHorzCX>125000</sizeHorzCX><sizeHorzCY>251256</sizeHorzCY><sizeVertCX>261875</sizeVertCX><sizeVertCY>663317</sizeVertCY></Rect></Wnd1></Sizes></Row0></Left><Right><Row0><Sizes><Wnd3><Rect><Top>-2</Top><Left>-2</Left><Bottom>526</Bottom><Right>308</Right><x>-2</x><y>-2</y><xscreen>200</xscreen><yscreen>200</yscreen><sizeHorzCX>125000</sizeHorzCX><sizeHorzCY>251256</sizeHorzCY><sizeVertCX>193750</sizeVertCX><sizeVertCY>663317</sizeVertCY></Rect></Wnd3></Sizes></Row0><Row1><Sizes><Wnd4><Rect><Top>-2</Top><Left>306</Left><Bottom>526</Bottom><Right>506</Right><x>306</x><y>-2</y><xscreen>200</xscreen><yscreen>200</yscreen><sizeHorzCX>125000</sizeHorzCX><sizeHorzCY>251256</sizeHorzCY><sizeVertCX>125000</sizeVertCX><sizeVertCY>663317</sizeVertCY></Rect></Wnd4></Sizes></Row1></Right><Bottom><Row0><Sizes><Wnd0><Rect><Top>-2</Top><Left>-2</Left><Bottom>198</Bottom><Right>1602</Right><x>-2</x><y>-2</y><xscreen>1604</xscreen><yscreen>200</yscreen><sizeHorzCX>1002500</sizeHorzCX><sizeHorzCY>251256</sizeHorzCY><sizeVertCX>125000</sizeVertCX><sizeVertCY>251256</sizeVertCY></Rect></Wnd0></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
+    <Top><Row0><Sizes><Toolbar-04F3B388><key>iaridepm.enu1</key></Toolbar-04F3B388></Sizes></Row0><Row1><Sizes><Toolbar-15A19F08><key>debuggergui.enu1</key></Toolbar-15A19F08></Sizes></Row1></Top><Left><Row0><Sizes><Wnd5><Rect><Top>-2</Top><Left>-2</Left><Bottom>526</Bottom><Right>417</Right><x>-2</x><y>-2</y><xscreen>200</xscreen><yscreen>200</yscreen><sizeHorzCX>125000</sizeHorzCX><sizeHorzCY>251256</sizeHorzCY><sizeVertCX>261875</sizeVertCX><sizeVertCY>663317</sizeVertCY></Rect></Wnd5></Sizes></Row0></Left><Right><Row0><Sizes><Wnd6><Rect><Top>-2</Top><Left>-2</Left><Bottom>526</Bottom><Right>308</Right><x>-2</x><y>-2</y><xscreen>200</xscreen><yscreen>200</yscreen><sizeHorzCX>125000</sizeHorzCX><sizeHorzCY>251256</sizeHorzCY><sizeVertCX>193750</sizeVertCX><sizeVertCY>663317</sizeVertCY></Rect></Wnd6></Sizes></Row0><Row1><Sizes><Wnd7><Rect><Top>-2</Top><Left>306</Left><Bottom>526</Bottom><Right>506</Right><x>306</x><y>-2</y><xscreen>200</xscreen><yscreen>200</yscreen><sizeHorzCX>125000</sizeHorzCX><sizeHorzCY>251256</sizeHorzCY><sizeVertCX>125000</sizeVertCX><sizeVertCY>663317</sizeVertCY></Rect></Wnd7></Sizes></Row1></Right><Bottom><Row0><Sizes><Wnd2><Rect><Top>-2</Top><Left>-2</Left><Bottom>198</Bottom><Right>1602</Right><x>-2</x><y>-2</y><xscreen>1604</xscreen><yscreen>200</yscreen><sizeHorzCX>1002500</sizeHorzCX><sizeHorzCY>251256</sizeHorzCY><sizeVertCX>125000</sizeVertCX><sizeVertCY>251256</sizeVertCY></Rect></Wnd2></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
   </Desktop>
 </Project>
 

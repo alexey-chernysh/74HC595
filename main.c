@@ -1,6 +1,7 @@
 
 #include "common.h"
 #include "clock.h"
+#include "iwdg.h"
 #include "motor_control.h"
 #include "encoder.h"
 #include "serialLED.h"
@@ -9,6 +10,7 @@
 
 void Setup(){
   SetupClock();
+  SetupIWDG();
   SetupADC();
   SetupMotorControl();
   SetupEncoder();
