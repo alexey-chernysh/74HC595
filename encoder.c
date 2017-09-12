@@ -12,6 +12,7 @@
 #include "common.h"
 #include "eeprom.h"
 #include "encoder.h"
+#include "serialLED.h"
 
 static unsigned char value2display;
 
@@ -122,10 +123,11 @@ __interrupt void EXTI_PORTD_IRQHandler(void)
   int change = encoder_change_accum/3;
   if(change != 0){
     encoder_change_accum = 0;
+    resetParamDisplayCounter();
     int tmp;
     switch(value2display){
     case 0:
-      value2display = 1;
+//      value2display = 1;
       break;
     case 1:
       tmp = GetAVS() + change;

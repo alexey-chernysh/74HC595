@@ -126,36 +126,42 @@ void SetDisplayNumeric(unsigned char lead_char, unsigned char num);
 static unsigned char last_value2display = 0; 
 static unsigned char new_value2display = 0; 
 
+void resetParamDisplayCounter(){
+  param_display_counter = 0;
+}
+
 void displayValues(){
-      if(preheatOn()) SetValue2Display(3); 
-      new_value2display = GetValue2Display();
-      if(preheatOn()) SetValue2Display(3); 
-      switch(new_value2display){
-      case 0:
-        SetDisplayNumeric(11, GetCurrentVoltage());
-        break;
-      case 1:
-        SetDisplayNumeric(12, GetAVS());
-        break;
-      case 2:
-        SetDisplayNumeric(13, GetIHS());
-        break;
-      case 3:
-        SetDisplayNumeric(14, GetTLS());
-        break;
-      default:
-        break;
-      };
-      if(last_value2display == new_value2display){
-        param_display_counter++;
-        if(param_display_counter > PARAM_DISPLAY_COUNTER_LIMIT){
-          param_display_counter = 0;
-          SetValue2Display(0);
-        };
-      } else {
-        param_display_counter = 0;
-        last_value2display = new_value2display;
-      };
+  if(preheatOn()) 
+    SetValue2Display(3); 
+  new_value2display = GetValue2Display();
+  if(preheatOn()) 
+    SetValue2Display(3); 
+  switch(new_value2display){
+  case 0:
+    SetDisplayNumeric(11, GetCurrentVoltage());
+    break;
+  case 1:
+    SetDisplayNumeric(12, GetAVS());
+    break;
+  case 2:
+    SetDisplayNumeric(13, GetIHS());
+    break;
+  case 3:
+    SetDisplayNumeric(14, GetTLS());
+    break;
+  default:
+    break;
+  };
+  if(last_value2display == new_value2display){
+    param_display_counter++;
+    if(param_display_counter > PARAM_DISPLAY_COUNTER_LIMIT){
+      param_display_counter = 0;
+      SetValue2Display(0);
+    };
+  } else {
+    param_display_counter = 0;
+    last_value2display = new_value2display;
+  };
 }
 
 // Вектор прерывания по обновлению или переполнению Таймера3
