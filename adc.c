@@ -219,7 +219,7 @@ __interrupt void ADC1_EOC_IRQHandler(){
     if(current_voltage > VOLTAGE_LOW_LIMIT)
       if(current_voltage < VOLTAGE_HIGH_LIMIT)
         delta = GetAVS() - current_voltage;
-    delta = GetLiftMotionVelocity(delta<<3);
+    delta = GetLiftMotionVelocity(delta<<1);
     SetMotorVelocity(delta); // вверх или вниз, со скоростью delta
   }
 }
