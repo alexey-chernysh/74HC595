@@ -44,7 +44,7 @@ void SetIHS(unsigned char new_value){
 }
 
 void SetTLS(unsigned char new_value){
-  setSensetivity(new_value);
+  setSlowVelocity(new_value);
   EEPROM_writeChar(2, new_value);
 };
 
@@ -60,6 +60,6 @@ unsigned char GetIHS(){
 
 unsigned char GetTLS(){
   char result = EEPROM_readChar(2);
-  setSensetivity(result);
+  setSlowVelocity(result);
   return result;
 };

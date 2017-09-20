@@ -98,22 +98,28 @@ unsigned char GetCurrentVoltage(){ return current_voltage;}
 #define POSITIONING_COMPLETE_SIGNAL PE_ODR_bit.ODR5
 #define AUTO_SIGNAL                 PF_IDR_bit.IDR4
 
+//#define IP_TRIGGER 1
+
 static signed long up_after_collision_counter = 0;
 static signed long up_after_collision_counter_limit = 50000L;
+#ifdef IP_TRIGGER
 static signed long down_for_plate_collision_counter = 0;
 static signed long down_for_plate_collision_counter_limit = 500000L;
+#endif
+static bool waiting_for_IP_signal_released = false;
+
 static signed int upVelocity = 126;
 static signed int downVelocity = -126;
+
 static bool preheat = false;
-static bool waiting_for_IP_signal_released = false;
 
 bool preheatOn(){
   return preheat;
 }
 
-unsigned char sensetivity;
-void setSensetivity(unsigned char s){
-  sensetivity = s;
+unsigned char slowVelocity;
+void setSlowVelocity(unsigned char s){
+  slowVelocity = s;
 }
 
 void setInitialHeight(char newValue){
@@ -151,19 +157,25 @@ signed int GetLiftMotionVelocity(signed int current_delta){
 
   // обработка ожидания завершения начального позиционирования
   bool isInitialPositioning = false;
+
   if(waiting_for_IP_signal_released){
     // удерживаем сигнал завершения "теста на касание"
     POSITIONING_COMPLETE_SIGNAL = 0;
+#ifdef IP_TRIGGER
     down_for_plate_collision_counter = 0;
+#endif
     if(!initial_positioning_signal) {
       waiting_for_IP_signal_released = false;
     };
   } else {
     POSITIONING_COMPLETE_SIGNAL = 1;
-    if(initial_positioning_signal) isInitialPositioning = true;
-    if(initial_positioning_button) isInitialPositioning = true;
+    if(initial_positioning_signal) 
+      isInitialPositioning = true;
+    if(initial_positioning_button) 
+      isInitialPositioning = true;
   };
 
+#ifdef IP_TRIGGER
   if(isInitialPositioning){
     // если есть сигнал "касание" от контроллера или кнопки
     // устанавливаем счетчик на величину, пропорционяльную таймауту
@@ -175,15 +187,28 @@ signed int GetLiftMotionVelocity(signed int current_delta){
     down_for_plate_collision_counter--;  // уменшаем счетчик ожидания таймаута
   }
   
+#else
+
+  if(initial_positioning_signal) 
+    isInitialPositioning = true;
+  if(initial_positioning_button) 
+    isInitialPositioning = true;
+  if(isInitialPositioning) 
+    current_lift_motion_velocity = downVelocity; // вниз на максимальной скорости
+
+#endif
+
   // обработка сигналов контроллера "резак вниз"
   if(torch_down)
-    if(preheat) current_lift_motion_velocity = -sensetivity; // вниз, с уставкой
+    if(preheat) current_lift_motion_velocity = -slowVelocity; // вниз, с уставкой
     else current_lift_motion_velocity = downVelocity; // вниз, с максимальной скоростью
 
     // обрабатываем значание датчика прикосновения
   if(collision_signal){ // сработка датчика прикосновения с листом
+#ifdef IP_TRIGGER
     // завершаем движение вниз
-    down_for_plate_collision_counter = 0;  
+    down_for_plate_collision_counter = 0; 
+#endif
     // начинаем движение вверх после касания/коллизии
     up_after_collision_counter = up_after_collision_counter_limit; 
   }; 
@@ -199,7 +224,7 @@ signed int GetLiftMotionVelocity(signed int current_delta){
   
   // обработка сигналов контроллера "резак вверх"
   if(torch_up)   
-    if(preheat) current_lift_motion_velocity = sensetivity; // вверх, с уставкой
+    if(preheat) current_lift_motion_velocity = slowVelocity; // вверх, с уставкой
     else current_lift_motion_velocity = upVelocity; // вверх, с максимальной скоростью 
 
   return current_lift_motion_velocity;

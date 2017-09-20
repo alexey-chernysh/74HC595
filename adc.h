@@ -6,6 +6,6 @@ void SetupADC();
 void RestartADC(void);
 unsigned char GetCurrentVoltage();
 void setInitialHeight(char newValue);
-void setSensetivity(unsigned char s);
+void setSlowVelocity(unsigned char s);
 
 #endif /*__ADC_H_*/
