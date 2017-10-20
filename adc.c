@@ -67,6 +67,16 @@ void SetupADC(){
   PE_CR1_bit.C15 = 1;   // Выход плавающий - установливаем подтягивающий резистор
   PE_CR2_bit.C25 = 0;   // Прерывание выключено
 
+  PC_DDR_bit.DDR3 = 1;  // Ножка PC3 конфигурируется на вывод - реле 1 защиты АЦП  от заноса высокого 
+                        // КЗ на землю - вкл/разомкнуто - выкл
+  PC_CR1_bit.C13 = 1;   // Выход плавающий - установливаем подтягивающий резистор
+  PC_CR2_bit.C23 = 0;   // Прерывание выключено
+
+  PC_DDR_bit.DDR4 = 1;  // Ножка PC4 конфигурируется на вывод - реле 2 защиты АЦП  от заноса высокого 
+                        // КЗ на землю - вкл/разомкнуто - выкл
+  PC_CR1_bit.C14 = 1;   // Выход плавающий - установливаем подтягивающий резистор
+  PC_CR2_bit.C24 = 0;   // Прерывание выключено
+
   // Настройка АЦП на канале АIN4/PB4
   ADC_CR1_ADON = 1;       //  Первое включее АЦП
   ADC_CR1_CONT = 0;
@@ -95,8 +105,10 @@ unsigned char GetCurrentVoltage(){ return current_voltage;}
 #define PREHEAT_SIGNAL              PC_IDR_bit.IDR1
 #define INITIAL_POSITIONING_SIGNAL  PD_IDR_bit.IDR0
 #define COLLISION_SIGNAL            PD_IDR_bit.IDR7
-#define POSITIONING_COMPLETE_SIGNAL PE_ODR_bit.ODR5
 #define AUTO_SIGNAL                 PF_IDR_bit.IDR4
+#define POSITIONING_COMPLETE_SIGNAL PE_ODR_bit.ODR5
+#define SURGE_PROTECTION_1          PC_ODR_bit.ODR3
+#define SURGE_PROTECTION_2          PC_ODR_bit.ODR4
 
 //#define IP_TRIGGER 1
 
@@ -152,9 +164,15 @@ signed int GetLiftMotionVelocity(signed int current_delta){
   if(UP_SIGNAL == 0) torch_up = true;
   else torch_up = false;
     
-  if(AUTO_SIGNAL == 0) 
+  if(AUTO_SIGNAL == 0){ 
     current_lift_motion_velocity = current_delta;
-
+    SURGE_PROTECTION_1 = 0;
+    SURGE_PROTECTION_2 = 0;
+  } else {
+    SURGE_PROTECTION_1 = 1;
+    SURGE_PROTECTION_2 = 1;
+  }
+  
   // обработка ожидания завершения начального позиционирования
   bool isInitialPositioning = false;
 
