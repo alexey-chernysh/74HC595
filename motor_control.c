@@ -22,7 +22,7 @@
   ******************************************************************************
   */
 
-#define PWM_LIMIT 70    
+#define PWM_LIMIT 90    
     
 void SetupMotorControl()
 {
@@ -77,21 +77,26 @@ void SetupMotorControl()
   * модуль val <= 127 
   ******************************************************************************
   */
+#define GATE 16
+
 void SetMotorVelocity(signed int pwm){
 
+  signed int tmp;
+  if(pwm >= GATE) tmp = pwm - GATE;
+  else
+    if(pwm <= -GATE) tmp = -pwm + GATE;
+    else tmp = 0;
   unsigned char high;
   unsigned char low;
+  high = (unsigned char)(tmp>>8);
+  low = (unsigned char)(tmp);
 
   if(pwm >= 0){
-    high = (unsigned char)(pwm>>8);
-    low = (unsigned char)(pwm);
     TIM2_CCR1H = high;
     TIM2_CCR1L = low;
     TIM2_CCR2H = 0;
     TIM2_CCR2L = 0;
   } else {
-    high = (unsigned char)((-pwm)>>8);
-    low = (unsigned char)(-pwm);
     TIM2_CCR1H = 0;
     TIM2_CCR1L = 0;
     TIM2_CCR2H = high;

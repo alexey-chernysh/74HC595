@@ -94,7 +94,7 @@ void RestartADC(void){
 }
 
 static const unsigned char VOLTAGE_LOW_LIMIT = 40;
-static const unsigned char VOLTAGE_HIGH_LIMIT = 210;
+static const unsigned char VOLTAGE_HIGH_LIMIT = 185;
 static unsigned int current_voltage = 0;
 
 unsigned char GetCurrentVoltage(){ return current_voltage;}
