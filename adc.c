@@ -248,6 +248,9 @@ signed int GetLiftMotionVelocity(signed int current_delta){
   return current_lift_motion_velocity;
 }
 
+#define GATE_PLUS 2
+#define GATE_MINUS (-GATE_PLUS)
+
 #pragma vector = ADC1_EOC_vector
 __interrupt void ADC1_EOC_IRQHandler(){
   if(ADC_CSR_EOC == 1){
@@ -259,10 +262,14 @@ __interrupt void ADC1_EOC_IRQHandler(){
 //    current_voltage = current_voltage>>7;  // 1/100 voltage divider
     current_voltage = current_voltage>>8;  // 1/50 voltage divider
     signed int delta = 0;
+    
     if(current_voltage > VOLTAGE_LOW_LIMIT)
       if(current_voltage < VOLTAGE_HIGH_LIMIT)
         delta = GetAVS() - current_voltage;
-    delta = GetLiftMotionVelocity(delta<<3);  // для консольки надо <<1
+
+    if((delta<GATE_PLUS)&&(delta>GATE_MINUS))delta=0;
+
+    delta = GetLiftMotionVelocity(10*delta);  // для консольки надо <<1
     SetMotorVelocity(delta); // вверх или вниз, со скоростью delta
   }
 }
