@@ -119,6 +119,8 @@ static signed long down_for_plate_collision_counter = 0;
 static signed long down_for_plate_collision_counter_limit = 500000L;
 #endif
 static bool waiting_for_IP_signal_released = false;
+static const unsigned int IP_complete_signal_hold_delay = 1000;
+static unsigned int IP_complete_signal_hold_counter = 0;
 
 static signed int upVelocity = 126;
 static signed int downVelocity = -126;
@@ -175,8 +177,9 @@ signed int GetLiftMotionVelocity(signed int current_delta){
   
   // обработка ожидания завершения начального позиционирования
   bool isInitialPositioning = false;
-
-  if(waiting_for_IP_signal_released){
+  if(IP_complete_signal_hold_counter > 0) IP_complete_signal_hold_counter--;
+  
+  if((waiting_for_IP_signal_released)||(IP_complete_signal_hold_counter > 0)){
     // удерживаем сигнал завершения "теста на касание"
     POSITIONING_COMPLETE_SIGNAL = 0;
 #ifdef IP_TRIGGER
@@ -229,6 +232,8 @@ signed int GetLiftMotionVelocity(signed int current_delta){
 #endif
     // начинаем движение вверх после касания/коллизии
     up_after_collision_counter = up_after_collision_counter_limit; 
+    // удерживаем сигнал "IP_COMPLETE"
+    IP_complete_signal_hold_counter = IP_complete_signal_hold_delay;
   }; 
 
   if(up_after_collision_counter > 0) { // вверх, в течении up_after_collision_counter_limit циклов
