@@ -86,7 +86,6 @@ void SetupADC(){
   ADC_CSR_EOCIE = 1;      //  Включаем прерывание по завершению пребразования АЦП.
   ADC_CR1_ADON = 1;       //  перезапуск АЦП
   
-  GetIHS();
 }
 
 void RestartADC(void){
@@ -129,15 +128,6 @@ static bool preheat = false;
 
 bool preheatOn(){
   return preheat;
-}
-
-unsigned char slowVelocity;
-void setSlowVelocity(unsigned char s){
-  slowVelocity = s;
-}
-
-void setInitialHeight(char newValue){
-  up_after_collision_counter_limit = 200L * newValue;
 }
 
 signed int GetLiftMotionVelocity(signed int current_delta){
@@ -221,7 +211,7 @@ signed int GetLiftMotionVelocity(signed int current_delta){
 
   // обработка сигналов контроллера "резак вниз"
   if(torch_down)
-    if(preheat) current_lift_motion_velocity = -slowVelocity; // вниз, с уставкой
+    if(preheat) current_lift_motion_velocity = - RestoreOxyfuelLiftSlowingSettingFromEEPROM(); // вниз, с уставкой
     else current_lift_motion_velocity = downVelocity; // вниз, с максимальной скоростью
 
     // обрабатываем значание датчика прикосновения
@@ -247,14 +237,13 @@ signed int GetLiftMotionVelocity(signed int current_delta){
   
   // обработка сигналов контроллера "резак вверх"
   if(torch_up)   
-    if(preheat) current_lift_motion_velocity = slowVelocity; // вверх, с уставкой
+    if(preheat) current_lift_motion_velocity = RestoreOxyfuelLiftSlowingSettingFromEEPROM(); // вверх, с уставкой
     else current_lift_motion_velocity = upVelocity; // вверх, с максимальной скоростью 
 
   return current_lift_motion_velocity;
 }
 
-#define GATE_PLUS 2
-#define GATE_MINUS (-GATE_PLUS)
+#define GATE 2
 
 #pragma vector = ADC1_EOC_vector
 __interrupt void ADC1_EOC_IRQHandler(){
@@ -270,11 +259,15 @@ __interrupt void ADC1_EOC_IRQHandler(){
     
     if(current_voltage > VOLTAGE_LOW_LIMIT)
       if(current_voltage < VOLTAGE_HIGH_LIMIT)
-        delta = GetAVS() - current_voltage;
+        delta = RestoreVoltageSettingFromEEPROM() - current_voltage;
 
-    if((delta<GATE_PLUS)&&(delta>GATE_MINUS))delta=0;
+    if( delta < GATE ){
+      if( delta > (-GATE) ) delta = 0;
+      else delta = delta + GATE;
+    } else delta = delta - GATE;
 
-    delta = GetLiftMotionVelocity(10*delta);  // для консольки надо <<1
+    delta = GetLiftMotionVelocity(3*delta);  // для консольки надо <<1
     SetMotorVelocity(delta); // вверх или вниз, со скоростью delta
+    RestartADC();
   }
 }

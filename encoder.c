@@ -62,6 +62,33 @@ void SetupEncoder(){
 
   unsigned char state = GetEncoderSensorsState();
   signed char change = GetAngleChange(state);
+ 
+  //Насройка таймера 1
+  TIM1_CR1 = 0; // ВЫключаем таймкр для программирования
+  TIM1_CR2 = 0; // Синхронизация как ведущий с периферией отключена
+  TIM1_IER = 0; // Блокируем прерывание 
+  TIM1_SR1 = 0; // Сбрасываем состояние
+  TIM1_SMCR = 0;// Синхронизация как ведомый с периферией отключена
+  TIM1_ETR = 0; // Внешнее тактирование отключено
+    
+  #define TIM1_PRESCALER 16000
+  TIM1_PSCRH = (unsigned char)(TIM1_PRESCALER>>8);
+  TIM1_PSCRL = (unsigned char)(TIM1_PRESCALER);
+  #define TIM1_LIMIT 300
+  TIM1_ARRH = (unsigned char)(TIM1_LIMIT>>8); // Старший байт предела счетчика 
+  TIM2_ARRL = (unsigned char)(TIM1_LIMIT);    // Младший байт предела счетчика цикла ШИМ
+  // Прерывание по обновлению счетного регистра разрешено
+  TIM1_IER = MASK_TIM1_IER_UIE;
+}
+
+void StartTimer1(){
+  // Прерывание по переполнению разрешено и таймер запущен
+  TIM1_CR1 = (MASK_TIM1_CR1_URS+MASK_TIM1_CR1_CEN);
+}
+
+void StopNResetTimer1(){
+  TIM1_CR1 = 0; // ВЫключаем таймер
+  TIM1_SR1 = 0; // Сбрасываем состояниеs
 }
 
 const static signed char table[] = {0,-1,1,0,1,0,0,-1,-1,0,0,1,0,1,-1,0}; 
@@ -88,6 +115,7 @@ void handleButton(){
   bool buttonState = PD_IDR_bit.IDR2;
   if(buttonState){
     if(!buttonPressed){
+//      StopNResetTimer1();
       buttonPressed = true;
       switch(value2display){
       case 0:
@@ -105,6 +133,7 @@ void handleButton(){
     }
   } else {
     if(buttonPressed) buttonPressed = false;
+//    StartTimer1();
   };
 }
 
@@ -123,26 +152,25 @@ __interrupt void EXTI_PORTD_IRQHandler(void)
   int change = encoder_change_accum/3;
   if(change != 0){
     encoder_change_accum = 0;
-    resetParamDisplayCounter();
+    ResetParamDisplayCounter();
     int tmp;
     switch(value2display){
     case 0:
-//      value2display = 1;
       break;
     case 1:
-      tmp = GetAVS() + change;
+      tmp = RestoreVoltageSettingFromEEPROM() + change;
       if(tmp >= 0) 
-        if(tmp <= 255) SetAVS((unsigned char)tmp);
+        if(tmp <= 255) StoreVoltageSettingInEEPROM((unsigned char)tmp);
       break;
     case 2:
-      tmp = GetIHS() + change;
+      tmp = RestoreInitialHeightSettingFromEEPROM() + change;
       if(tmp >= 0) 
-        if(tmp <= 255) SetIHS((unsigned char)tmp);
+        if(tmp <= 255) StoreInitialHeightSettingInEEPROM((unsigned char)tmp);
       break;
     case 3:
-      tmp = GetTLS() + change;
+      tmp = RestoreOxyfuelLiftSlowingSettingFromEEPROM() + change;
       if(tmp >= 0) 
-        if(tmp <= 127) SetTLS((unsigned char)tmp);
+        if(tmp <= 127) StoreOxyfuelLiftSlowingSettingInEEPROM((unsigned char)tmp);
       break;
     default:
       break;
@@ -150,3 +178,12 @@ __interrupt void EXTI_PORTD_IRQHandler(void)
   }
 }
 
+// Вектор прерывания по обновлению или переполнению Таймера1
+#pragma vector = TIM1_OVR_UIF_vector
+__interrupt void TIM1_OVR_UIF_handler(void){
+  // Проверка, что же вызвало прерывание
+  if (TIM1_SR1_UIF==1){
+    StopNResetTimer1();
+
+  }  
+}

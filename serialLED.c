@@ -47,7 +47,7 @@ static unsigned char int_to_7leds[] = {
 
 #define BYTE_LENGTH 8
 
-void setDisplayState(char n,  // номер дисплея от 0 до 3
+void SetDisplayState(char n,  // номер дисплея от 0 до 3
                      char mask){ // битовая маска символа
   LCK = 0;  // начинаем вывод - снимаем защелку
   int i;
@@ -126,7 +126,7 @@ void SetDisplayNumeric(unsigned char lead_char, unsigned char num);
 static unsigned char last_value2display = 0; 
 static unsigned char new_value2display = 0; 
 
-void resetParamDisplayCounter(){
+void ResetParamDisplayCounter(){
   param_display_counter = 0;
 }
 
@@ -141,13 +141,13 @@ void displayValues(){
     SetDisplayNumeric(11, GetCurrentVoltage());
     break;
   case 1:
-    SetDisplayNumeric(12, GetAVS());
+    SetDisplayNumeric(12, RestoreVoltageSettingFromEEPROM());
     break;
   case 2:
-    SetDisplayNumeric(13, GetIHS());
+    SetDisplayNumeric(13, RestoreInitialHeightSettingFromEEPROM());
     break;
   case 3:
-    SetDisplayNumeric(14, GetTLS());
+    SetDisplayNumeric(14, RestoreOxyfuelLiftSlowingSettingFromEEPROM());
     break;
   default:
     break;
@@ -176,16 +176,16 @@ __interrupt void TIM3_OVR_UIF_handler(void)
     PB_ODR = 0;
     switch(pos_counter){
       case 0: 
-        setDisplayState(pos_counter, int_to_7leds[ch0]);
+        SetDisplayState(pos_counter, int_to_7leds[ch0]);
         break;
       case 1: 
-        setDisplayState(pos_counter, int_to_7leds[ch1]);
+        SetDisplayState(pos_counter, int_to_7leds[ch1]);
         break;
       case 2: 
-        setDisplayState(pos_counter, int_to_7leds[ch2]);
+        SetDisplayState(pos_counter, int_to_7leds[ch2]);
         break;
       case 3: 
-        setDisplayState(pos_counter, int_to_7leds[ch3]);
+        SetDisplayState(pos_counter, int_to_7leds[ch3]);
         break;
     }
     pos_counter++;
@@ -196,7 +196,6 @@ __interrupt void TIM3_OVR_UIF_handler(void)
     if(value_refresh_counter > VALUE_REFRESH_COUNTER_LIMIT){
       value_refresh_counter = 0;
       displayValues();
-      RestartADC();
     };
   }  
 }

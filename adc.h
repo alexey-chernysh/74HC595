@@ -5,7 +5,5 @@ bool preheatOn();
 void SetupADC();
 void RestartADC(void);
 unsigned char GetCurrentVoltage();
-void setInitialHeight(char newValue);
-void setSlowVelocity(unsigned char s);
 
 #endif /*__ADC_H_*/

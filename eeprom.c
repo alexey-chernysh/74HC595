@@ -10,9 +10,14 @@
 
 #include "common.h"
 #include "adc.h"
+#include "eeprom.h"
 
 //  EEPROM base address
 #define EEPROM_BASE_ADDRESS 0x4000  
+#define VOLTAGE_OFFSET 0x0
+#define INITIAL_HEIGHT_OFFSET 0x1
+#define OXIFUEL_LIFT_SLOWING_OFFSET 0x2
+#define LIFT_VELOCITY_OFFSET 0x1
 
 void EEPROM_writeChar(int offset, char data){
   if (FLASH_IAPSR_DUL == 0){ //  Проверить флаг EEPROM  - включена ли защита от записи  
@@ -34,32 +39,34 @@ char EEPROM_readChar(int offset){
   return *address;
 }
 
-void SetAVS(unsigned char new_value){
-  EEPROM_writeChar(0, new_value);
+void StoreVoltageSettingInEEPROM(unsigned char new_value){
+  EEPROM_writeChar(VOLTAGE_OFFSET, new_value);
 }
 
-void SetIHS(unsigned char new_value){
-  setInitialHeight(new_value);
-  EEPROM_writeChar(1, new_value);
+void StoreInitialHeightSettingInEEPROM(unsigned char new_value){
+  EEPROM_writeChar(INITIAL_HEIGHT_OFFSET, new_value);
 }
 
-void SetTLS(unsigned char new_value){
-  setSlowVelocity(new_value);
-  EEPROM_writeChar(2, new_value);
+void StoreOxyfuelLiftSlowingSettingInEEPROM(unsigned char new_value){
+  EEPROM_writeChar(OXIFUEL_LIFT_SLOWING_OFFSET, new_value);
 };
 
-unsigned char GetAVS(){
-  return EEPROM_readChar(0);
+void StoreLiftVelocitySettingInEEPROM(unsigned char new_value){
+  EEPROM_writeChar(LIFT_VELOCITY_OFFSET, new_value);
+};
+
+unsigned char RestoreVoltageSettingFromEEPROM(){
+  return EEPROM_readChar(VOLTAGE_OFFSET);
 }
 
-unsigned char GetIHS(){
-  char result = EEPROM_readChar(1);
-  setInitialHeight(result);
-  return result;
+unsigned char RestoreInitialHeightSettingFromEEPROM(){
+  return EEPROM_readChar(INITIAL_HEIGHT_OFFSET);
 }
 
-unsigned char GetTLS(){
-  char result = EEPROM_readChar(2);
-  setSlowVelocity(result);
-  return result;
+unsigned char RestoreOxyfuelLiftSlowingSettingFromEEPROM(){
+  return EEPROM_readChar(OXIFUEL_LIFT_SLOWING_OFFSET);
+};
+
+unsigned char RestoreLiftVelocitySettingIFromEEPROM(){
+  return EEPROM_readChar(LIFT_VELOCITY_OFFSET);
 };
