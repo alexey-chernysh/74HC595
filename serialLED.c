@@ -12,6 +12,24 @@
 #include "encoder.h"
 #include "adc.h"
 #include "eeprom.h"
+    
+/*
+    led bit map
+      0
+     ---
+    |   |
+   5|   |1
+    | 6 |
+     ---
+    |   |
+   4|   |2
+    | 3 |
+     --- |
+         |7
+    
+    0 - visible
+    1 - invisible
+*/
 
 static unsigned char int_to_7leds[] = {
   MAKE_BINARY(0,0,0,0,0,0,1,1), // 0
@@ -28,7 +46,9 @@ static unsigned char int_to_7leds[] = {
   MAKE_BINARY(1,1,1,1,1,1,1,1), // space
   MAKE_BINARY(0,0,0,1,0,0,0,1), // A
   MAKE_BINARY(1,0,0,1,0,0,0,1), // H
-  MAKE_BINARY(0,1,0,0,1,0,0,1)  // S
+  MAKE_BINARY(0,1,0,0,1,0,0,1), // S
+  MAKE_BINARY(0,1,1,1,0,0,0,1), // F  
+  MAKE_BINARY(0,1,1,0,0,0,0,1)  // E  
 };
 
 // MR/сброс подтянут к VCC, 
@@ -148,6 +168,9 @@ void displayValues(){
     break;
   case 3:
     SetDisplayNumeric(14, RestoreOxyfuelLiftSlowingSettingFromEEPROM());
+    break;
+  case 4:
+    SetDisplayNumeric(15, RestoreLiftVelocitySettingFromEEPROM());
     break;
   default:
     break;

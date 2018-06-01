@@ -67,6 +67,6 @@ unsigned char RestoreOxyfuelLiftSlowingSettingFromEEPROM(){
   return EEPROM_readChar(OXIFUEL_LIFT_SLOWING_OFFSET);
 };
 
-unsigned char RestoreLiftVelocitySettingIFromEEPROM(){
+unsigned char RestoreLiftVelocitySettingFromEEPROM(){
   return EEPROM_readChar(LIFT_VELOCITY_OFFSET);
 };

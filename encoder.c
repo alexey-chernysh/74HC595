@@ -42,6 +42,32 @@ signed char GetAngleChange(unsigned char newState);
   ******************************************************************************
   */
 
+const unsigned int TIM1_PRESCALER = 15999;
+const unsigned int TIM1_LIMIT = 9999;
+
+void SetupTimer1(){
+  //Насройка таймера 1
+  TIM1_CR1 = 0; // ВЫключаем таймкр для программирования
+  TIM1_CR2 = 0; // Синхронизация как ведущий с периферией отключена
+  TIM1_IER = 0; // Блокируем прерывание 
+  TIM1_SR1 = 0; // Сбрасываем состояние
+  TIM1_SMCR = 0;// Синхронизация как ведомый с периферией отключена
+  TIM1_ETR = 0; // Внешнее тактирование отключено
+    
+  TIM1_PSCRH = (unsigned char)(TIM1_PRESCALER>>8);
+  TIM1_PSCRL = (unsigned char)(TIM1_PRESCALER);
+  TIM1_ARRH = (unsigned char)(TIM1_LIMIT>>8); // Старший байт предела счетчика 
+  TIM1_ARRL = (unsigned char)(TIM1_LIMIT);    // Младший байт предела счетчика
+  TIM1_CCR1H = 0xFF;
+  TIM1_CCR1L = 0xFF;
+  TIM1_CCR2H = 0xFF;
+  TIM1_CCR2L = 0xFF;
+  TIM1_CCR3H = 0xFF;
+  TIM1_CCR3L = 0xFF;
+  TIM1_CCR4H = 0xFF;
+  TIM1_CCR4L = 0xFF;
+}
+
 void SetupEncoder(){
   value2display = 0;
 
@@ -63,32 +89,25 @@ void SetupEncoder(){
   unsigned char state = GetEncoderSensorsState();
   signed char change = GetAngleChange(state);
  
-  //Насройка таймера 1
-  TIM1_CR1 = 0; // ВЫключаем таймкр для программирования
-  TIM1_CR2 = 0; // Синхронизация как ведущий с периферией отключена
-  TIM1_IER = 0; // Блокируем прерывание 
-  TIM1_SR1 = 0; // Сбрасываем состояние
-  TIM1_SMCR = 0;// Синхронизация как ведомый с периферией отключена
-  TIM1_ETR = 0; // Внешнее тактирование отключено
-    
-  #define TIM1_PRESCALER 16000
-  TIM1_PSCRH = (unsigned char)(TIM1_PRESCALER>>8);
-  TIM1_PSCRL = (unsigned char)(TIM1_PRESCALER);
-  #define TIM1_LIMIT 300
-  TIM1_ARRH = (unsigned char)(TIM1_LIMIT>>8); // Старший байт предела счетчика 
-  TIM2_ARRL = (unsigned char)(TIM1_LIMIT);    // Младший байт предела счетчика цикла ШИМ
-  // Прерывание по обновлению счетного регистра разрешено
-  TIM1_IER = MASK_TIM1_IER_UIE;
+  SetupTimer1();
 }
 
+//const unsigned short repetition = 2;
+
 void StartTimer1(){
-  // Прерывание по переполнению разрешено и таймер запущен
-  TIM1_CR1 = (MASK_TIM1_CR1_URS+MASK_TIM1_CR1_CEN);
+  TIM1_CR1 = 0; 
+//  TIM1_CR1_OPM = 1; // One Pulse Mode enabled
+  TIM1_CR1_URS = 1;
+  TIM1_CR1_DIR = 1;
+//  TIM1_RCR = repetition;
+  TIM1_IER_UIE = 1; // Разрешаем прерывание по переполнению
+  TIM1_CR1_CEN = 1; // Выключаем таймер
 }
 
 void StopNResetTimer1(){
-  TIM1_CR1 = 0; // ВЫключаем таймер
-  TIM1_SR1 = 0; // Сбрасываем состояниеs
+  TIM1_SR1_UIF = 0;
+  TIM1_CR1 = 0; // Выключаем таймер
+  TIM1_SR1 = 0; // Сбрасываем состояние
 }
 
 const static signed char table[] = {0,-1,1,0,1,0,0,-1,-1,0,0,1,0,1,-1,0}; 
@@ -112,10 +131,10 @@ signed char GetAngleChange(unsigned char newState){
 static bool buttonPressed = false;
 
 void handleButton(){
-  bool buttonState = PD_IDR_bit.IDR2;
+  bool buttonState = !PD_IDR_bit.IDR2;
   if(buttonState){
     if(!buttonPressed){
-//      StopNResetTimer1();
+      StartTimer1();
       buttonPressed = true;
       switch(value2display){
       case 0:
@@ -133,7 +152,7 @@ void handleButton(){
     }
   } else {
     if(buttonPressed) buttonPressed = false;
-//    StartTimer1();
+    StopNResetTimer1();
   };
 }
 
@@ -144,8 +163,7 @@ void handleButton(){
 static int encoder_change_accum = 0;
 
 #pragma vector = 8
-__interrupt void EXTI_PORTD_IRQHandler(void)
-{
+__interrupt void EXTI_PORTD_IRQHandler(void){
   handleButton();
   unsigned char sensorsState = GetEncoderSensorsState();
   encoder_change_accum = encoder_change_accum + GetAngleChange(sensorsState);
@@ -172,6 +190,11 @@ __interrupt void EXTI_PORTD_IRQHandler(void)
       if(tmp >= 0) 
         if(tmp <= 127) StoreOxyfuelLiftSlowingSettingInEEPROM((unsigned char)tmp);
       break;
+    case 4:
+      tmp = RestoreLiftVelocitySettingFromEEPROM() + change;
+      if(tmp >= 0) 
+        if(tmp <= 127) StoreLiftVelocitySettingInEEPROM((unsigned char)tmp);
+      break;
     default:
       break;
     }
@@ -182,8 +205,8 @@ __interrupt void EXTI_PORTD_IRQHandler(void)
 #pragma vector = TIM1_OVR_UIF_vector
 __interrupt void TIM1_OVR_UIF_handler(void){
   // Проверка, что же вызвало прерывание
-  if (TIM1_SR1_UIF==1){
+  if (TIM1_SR1_UIF == 1){
     StopNResetTimer1();
-
+    SetValue2Display(4);
   }  
 }

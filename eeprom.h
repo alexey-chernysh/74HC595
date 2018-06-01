@@ -9,6 +9,6 @@ void StoreLiftVelocitySettingInEEPROM(unsigned char new_value);
 unsigned char RestoreVoltageSettingFromEEPROM();
 unsigned char RestoreInitialHeightSettingFromEEPROM();
 unsigned char RestoreOxyfuelLiftSlowingSettingFromEEPROM();
-unsigned char RestoreLiftVelocitySettingIFromEEPROM();
+unsigned char RestoreLiftVelocitySettingFromEEPROM();
 
 #endif /*__EEPROM_H_*/
