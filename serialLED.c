@@ -46,8 +46,8 @@ static unsigned char int_to_7leds[] = {
   MAKE_BINARY(1,1,1,1,1,1,1,1), // space
   MAKE_BINARY(0,0,0,1,0,0,0,1), // A
   MAKE_BINARY(1,0,0,1,0,0,0,1), // H
+  MAKE_BINARY(1,0,0,0,0,0,1,1), // U  
   MAKE_BINARY(0,1,0,0,1,0,0,1), // S
-  MAKE_BINARY(0,1,1,1,0,0,0,1), // F  
   MAKE_BINARY(0,1,1,0,0,0,0,1)  // E  
 };
 
@@ -195,6 +195,8 @@ __interrupt void TIM3_OVR_UIF_handler(void)
   if (TIM3_SR1_UIF==1)
   {
     TIM3_SR1_UIF = 0; // Очистка флага прерывания по обновлению
+    
+    IncDelayCounter();
 
     PB_ODR = 0;
     switch(pos_counter){

@@ -121,9 +121,6 @@ static bool waiting_for_IP_signal_released = false;
 static const unsigned int IP_complete_signal_hold_delay = 1000;
 static unsigned int IP_complete_signal_hold_counter = 0;
 
-static signed int upVelocity = 126;
-static signed int downVelocity = -126;
-
 static bool preheat = false;
 
 bool preheatOn(){
@@ -164,6 +161,10 @@ signed int GetLiftMotionVelocity(signed int current_delta){
     SURGE_PROTECTION_1 = 1;
     SURGE_PROTECTION_2 = 1;
   }
+  
+  signed int upVelocity = RestoreLiftVelocitySettingFromEEPROM();
+  signed int downVelocity = -upVelocity;
+
   
   // обработка ожидания завершения начального позиционирования
   bool isInitialPositioning = false;

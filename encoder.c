@@ -42,32 +42,6 @@ signed char GetAngleChange(unsigned char newState);
   ******************************************************************************
   */
 
-const unsigned int TIM1_PRESCALER = 15999;
-const unsigned int TIM1_LIMIT = 9999;
-
-void SetupTimer1(){
-  //Насройка таймера 1
-  TIM1_CR1 = 0; // ВЫключаем таймкр для программирования
-  TIM1_CR2 = 0; // Синхронизация как ведущий с периферией отключена
-  TIM1_IER = 0; // Блокируем прерывание 
-  TIM1_SR1 = 0; // Сбрасываем состояние
-  TIM1_SMCR = 0;// Синхронизация как ведомый с периферией отключена
-  TIM1_ETR = 0; // Внешнее тактирование отключено
-    
-  TIM1_PSCRH = (unsigned char)(TIM1_PRESCALER>>8);
-  TIM1_PSCRL = (unsigned char)(TIM1_PRESCALER);
-  TIM1_ARRH = (unsigned char)(TIM1_LIMIT>>8); // Старший байт предела счетчика 
-  TIM1_ARRL = (unsigned char)(TIM1_LIMIT);    // Младший байт предела счетчика
-  TIM1_CCR1H = 0xFF;
-  TIM1_CCR1L = 0xFF;
-  TIM1_CCR2H = 0xFF;
-  TIM1_CCR2L = 0xFF;
-  TIM1_CCR3H = 0xFF;
-  TIM1_CCR3L = 0xFF;
-  TIM1_CCR4H = 0xFF;
-  TIM1_CCR4L = 0xFF;
-}
-
 void SetupEncoder(){
   value2display = 0;
 
@@ -88,26 +62,31 @@ void SetupEncoder(){
 
   unsigned char state = GetEncoderSensorsState();
   signed char change = GetAngleChange(state);
- 
-  SetupTimer1();
 }
 
-//const unsigned short repetition = 2;
+static bool delay_counter_on = false;
+static unsigned int delay_counter = 0;
+static unsigned int delay_counter_limit = 0xFFFF;
 
-void StartTimer1(){
-  TIM1_CR1 = 0; 
-//  TIM1_CR1_OPM = 1; // One Pulse Mode enabled
-  TIM1_CR1_URS = 1;
-  TIM1_CR1_DIR = 1;
-//  TIM1_RCR = repetition;
-  TIM1_IER_UIE = 1; // Разрешаем прерывание по переполнению
-  TIM1_CR1_CEN = 1; // Выключаем таймер
+void StartDelayCounter(unsigned int delay_limit){
+  delay_counter_limit = delay_limit;
+  delay_counter_on = true;
 }
 
-void StopNResetTimer1(){
-  TIM1_SR1_UIF = 0;
-  TIM1_CR1 = 0; // Выключаем таймер
-  TIM1_SR1 = 0; // Сбрасываем состояние
+void StopNResetDelayCounter(){
+  delay_counter_on = false;
+  delay_counter = 0;
+}
+
+void IncDelayCounter(){
+  if(delay_counter_on){
+    delay_counter++;
+    if(delay_counter >= delay_counter_limit){
+      StopNResetDelayCounter();
+      ResetParamDisplayCounter();
+      SetValue2Display(4);
+    }
+  }
 }
 
 const static signed char table[] = {0,-1,1,0,1,0,0,-1,-1,0,0,1,0,1,-1,0}; 
@@ -134,7 +113,7 @@ void handleButton(){
   bool buttonState = !PD_IDR_bit.IDR2;
   if(buttonState){
     if(!buttonPressed){
-      StartTimer1();
+      StartDelayCounter(1000);
       buttonPressed = true;
       switch(value2display){
       case 0:
@@ -152,7 +131,7 @@ void handleButton(){
     }
   } else {
     if(buttonPressed) buttonPressed = false;
-    StopNResetTimer1();
+    StopNResetDelayCounter();
   };
 }
 
@@ -188,12 +167,12 @@ __interrupt void EXTI_PORTD_IRQHandler(void){
     case 3:
       tmp = RestoreOxyfuelLiftSlowingSettingFromEEPROM() + change;
       if(tmp >= 0) 
-        if(tmp <= 127) StoreOxyfuelLiftSlowingSettingInEEPROM((unsigned char)tmp);
+        if(tmp <= 255) StoreOxyfuelLiftSlowingSettingInEEPROM((unsigned char)tmp);
       break;
     case 4:
       tmp = RestoreLiftVelocitySettingFromEEPROM() + change;
       if(tmp >= 0) 
-        if(tmp <= 127) StoreLiftVelocitySettingInEEPROM((unsigned char)tmp);
+        if(tmp <= 126) StoreLiftVelocitySettingInEEPROM((unsigned char)tmp);
       break;
     default:
       break;
@@ -201,12 +180,3 @@ __interrupt void EXTI_PORTD_IRQHandler(void){
   }
 }
 
-// Вектор прерывания по обновлению или переполнению Таймера1
-#pragma vector = TIM1_OVR_UIF_vector
-__interrupt void TIM1_OVR_UIF_handler(void){
-  // Проверка, что же вызвало прерывание
-  if (TIM1_SR1_UIF == 1){
-    StopNResetTimer1();
-    SetValue2Display(4);
-  }  
-}

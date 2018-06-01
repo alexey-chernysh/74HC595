@@ -11,6 +11,7 @@
 #include "common.h"
 #include "adc.h"
 #include "eeprom.h"
+#include "motor_control.h"
 
 //  EEPROM base address
 #define EEPROM_BASE_ADDRESS 0x4000  
@@ -53,6 +54,8 @@ void StoreOxyfuelLiftSlowingSettingInEEPROM(unsigned char new_value){
 
 void StoreLiftVelocitySettingInEEPROM(unsigned char new_value){
   EEPROM_writeChar(LIFT_VELOCITY_OFFSET, new_value);
+  unsigned int pwm_limit = 127-new_value;
+  SetPWMLimit(pwm_limit);
 };
 
 unsigned char RestoreVoltageSettingFromEEPROM(){

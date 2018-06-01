@@ -10,6 +10,7 @@
   */
 
 #include "common.h"
+#include "eeprom.h"
 
 /**
   ******************************************************************************
@@ -34,7 +35,12 @@
 // PD3/TIM2_CH2  - это DIR 
 // PD4/TIM2_CH1  - это ШИМ 
 
-#define PWM_LIMIT 90    
+//#define PWM_LIMIT 90    
+
+void SetPWMLimit(unsigned int pwm_limit){
+  TIM2_ARRH = (unsigned char)((pwm_limit)>>8); // Старший байт предела счетчика цикла ШИМ
+  TIM2_ARRL = (unsigned char)(pwm_limit);      // Младший байт предела счетчика цикла ШИМ
+}
     
 void SetupMotorControl()
 {
@@ -60,8 +66,9 @@ void SetupMotorControl()
   TIM2_CCER2 = 0;
 
   TIM2_PSCR = 6;       // Делитель 1
-  TIM2_ARRH = (unsigned char)((PWM_LIMIT)>>8); // Старший байт предела счетчика цикла ШИМ
-  TIM2_ARRL = (unsigned char)(PWM_LIMIT);      // Младший байт предела счетчика цикла ШИМ
+  SetPWMLimit(RestoreLiftVelocitySettingFromEEPROM());
+//  TIM2_ARRH = (unsigned char)((PWM_LIMIT)>>8); // Старший байт предела счетчика цикла ШИМ
+//  TIM2_ARRL = (unsigned char)(PWM_LIMIT);      // Младший байт предела счетчика цикла ШИМ
 
 #ifdef TLE5205
   // для TLE5205 - первый бит это направление и он не модулируется

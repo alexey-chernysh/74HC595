@@ -12,7 +12,7 @@ ByteLimit=50
 Show=1 1
 Sort=4 0
 [DebugChecksum]
-Checksum=-1071163571
+Checksum=1655943525
 [CallStack]
 ShowArgs=0
 [Disassembly]
@@ -57,9 +57,7 @@ LogEnabled=0
 GraphEnabled=0
 ShowTimeLog=1
 [Breakpoints]
-Bp0=_ "STD_CODE" "{$PROJ_DIR$\encoder.c}.213.1" 0 0 0 0 "" 0 ""
-Bp1=_ "STD_CODE" "{$PROJ_DIR$\encoder.c}.210.5" 1 0 0 0 "" 0 ""
-Count=2
+Count=0
 [Log file]
 LoggingEnabled=_ 0
 LogFile=_ ""

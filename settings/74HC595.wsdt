@@ -3,7 +3,7 @@
 <Workspace>
   <ConfigDictionary>
     
-  <CurrentConfigs><Project>74&#x420;&#x421;595/Debug</Project></CurrentConfigs></ConfigDictionary>
+  <CurrentConfigs><Project>74&#x420;&#x421;595/Release</Project></CurrentConfigs></ConfigDictionary>
   <Desktop>
     <Static>
       <Build>
@@ -24,7 +24,7 @@
     <Windows>
       
       
-    <Wnd0>
+    <Wnd2>
         <Tabs>
           <Tab>
             <Identity>TabID-31790-688</Identity>
@@ -32,24 +32,24 @@
             <Factory>Workspace</Factory>
             <Session>
               
-            <NodeDict><ExpandedNode>74&#x420;&#x421;595</ExpandedNode><ExpandedNode>74&#x420;&#x421;595/Output</ExpandedNode><ExpandedNode>74&#x420;&#x421;595/main.c</ExpandedNode></NodeDict></Session>
+            <NodeDict><ExpandedNode>74&#x420;&#x421;595</ExpandedNode><ExpandedNode>74&#x420;&#x421;595/Output</ExpandedNode></NodeDict></Session>
           </Tab>
         </Tabs>
         
-      <SelectedTab>0</SelectedTab></Wnd0><Wnd1><Tabs><Tab><Identity>TabID-25980-10378</Identity><TabName>Build</TabName><Factory>Build</Factory><Session/></Tab><Tab><Identity>TabID-1665-29256</Identity><TabName>Debug Log</TabName><Factory>Debug-Log</Factory><Session/></Tab><Tab><Identity>TabID-15551-381</Identity><TabName>Find in Files</TabName><Factory>Find-in-Files</Factory><Session/></Tab></Tabs><SelectedTab>0</SelectedTab></Wnd1></Windows>
+      <SelectedTab>0</SelectedTab></Wnd2><Wnd3><Tabs><Tab><Identity>TabID-25980-10378</Identity><TabName>Build</TabName><Factory>Build</Factory><Session/></Tab><Tab><Identity>TabID-1665-29256</Identity><TabName>Debug Log</TabName><Factory>Debug-Log</Factory><Session/></Tab><Tab><Identity>TabID-15551-381</Identity><TabName>Find in Files</TabName><Factory>Find-in-Files</Factory><Session/></Tab></Tabs><SelectedTab>0</SelectedTab></Wnd3></Windows>
     <Editor>
       
       
       
       
-    <Pane><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\encoder.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>51</YPos2><SelStart2>2150</SelStart2><SelEnd2>2150</SelEnd2></Tab><ActiveTab>0</ActiveTab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\serialLED.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>183</YPos2><SelStart2>539</SelStart2><SelEnd2>539</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\main.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>1</YPos2><SelStart2>334</SelStart2><SelEnd2>334</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\..\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\stm8\inc\iostm8s105k4.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>4643</YPos2><SelStart2>157152</SelStart2><SelEnd2>157176</SelEnd2></Tab></Pane><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
+    <Pane><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\encoder.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>98</YPos2><SelStart2>3616</SelStart2><SelEnd2>3616</SelEnd2></Tab><ActiveTab>0</ActiveTab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\main.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>0</YPos2><SelStart2>334</SelStart2><SelEnd2>334</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\adc.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>155</YPos2><SelStart2>6643</SelStart2><SelEnd2>6643</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\motor_control.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>0</YPos2><SelStart2>361</SelStart2><SelEnd2>361</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\motor_control.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>0</YPos2><SelStart2>140</SelStart2><SelEnd2>152</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\eeprom.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>0</YPos2><SelStart2>618</SelStart2><SelEnd2>656</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\eeprom.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>33</YPos2><SelStart2>1682</SelStart2><SelEnd2>1682</SelEnd2></Tab></Pane><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
     <Positions>
       
       
       
       
       
-    <Top><Row0><Sizes><Toolbar-0714C2E8><key>iaridepm.enu1</key></Toolbar-0714C2E8></Sizes></Row0><Row1><Sizes/></Row1><Row2><Sizes/></Row2></Top><Left><Row0><Sizes><Wnd0><Rect><Top>-2</Top><Left>-2</Left><Bottom>565</Bottom><Right>352</Right><x>-2</x><y>-2</y><xscreen>980</xscreen><yscreen>1414</yscreen><sizeHorzCX>612500</sizeHorzCX><sizeHorzCY>1776382</sizeHorzCY><sizeVertCX>221250</sizeVertCX><sizeVertCY>712312</sizeVertCY></Rect></Wnd0></Sizes></Row0></Left><Right><Row0><Sizes/></Row0></Right><Bottom><Row0><Sizes><Wnd1><Rect><Top>-2</Top><Left>-2</Left><Bottom>183</Bottom><Right>1602</Right><x>-2</x><y>-2</y><xscreen>1604</xscreen><yscreen>185</yscreen><sizeHorzCX>1002500</sizeHorzCX><sizeHorzCY>232412</sizeHorzCY><sizeVertCX>212500</sizeVertCX><sizeVertCY>482412</sizeVertCY></Rect></Wnd1></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
+    <Top><Row0><Sizes><Toolbar-0714C2E8><key>iaridepm.enu1</key></Toolbar-0714C2E8></Sizes></Row0><Row1><Sizes/></Row1><Row2><Sizes/></Row2></Top><Left><Row0><Sizes><Wnd2><Rect><Top>-2</Top><Left>-2</Left><Bottom>565</Bottom><Right>352</Right><x>-2</x><y>-2</y><xscreen>980</xscreen><yscreen>1414</yscreen><sizeHorzCX>612500</sizeHorzCX><sizeHorzCY>1776382</sizeHorzCY><sizeVertCX>221250</sizeVertCX><sizeVertCY>712312</sizeVertCY></Rect></Wnd2></Sizes></Row0></Left><Right><Row0><Sizes/></Row0></Right><Bottom><Row0><Sizes><Wnd3><Rect><Top>-2</Top><Left>-2</Left><Bottom>183</Bottom><Right>1602</Right><x>-2</x><y>-2</y><xscreen>1604</xscreen><yscreen>185</yscreen><sizeHorzCX>1002500</sizeHorzCX><sizeHorzCY>232412</sizeHorzCY><sizeVertCX>212500</sizeVertCX><sizeVertCY>482412</sizeVertCY></Rect></Wnd3></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
   </Desktop>
 </Workspace>
 
