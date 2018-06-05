@@ -30,7 +30,7 @@
 // PD3/TIM2_CH2  - это ШИМ2 
 // PD4/TIM2_CH1  - это ШИМ1 
 
-#define TLE5205 1
+//#define TLE5205 1
 // для перемаркированных TLE5206 (TLE5205)
 // PD3/TIM2_CH2  - это DIR 
 // PD4/TIM2_CH1  - это ШИМ 

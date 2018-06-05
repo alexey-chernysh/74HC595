@@ -18,7 +18,7 @@
 #define VOLTAGE_OFFSET 0x0
 #define INITIAL_HEIGHT_OFFSET 0x1
 #define OXIFUEL_LIFT_SLOWING_OFFSET 0x2
-#define LIFT_VELOCITY_OFFSET 0x1
+#define LIFT_VELOCITY_OFFSET 0x3
 
 void EEPROM_writeChar(int offset, char data){
   if (FLASH_IAPSR_DUL == 0){ //  Проверить флаг EEPROM  - включена ли защита от записи  
