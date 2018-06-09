@@ -220,7 +220,7 @@ signed int GetLiftMotionVelocity(signed int current_delta){
     down_for_plate_collision_counter = 0; 
 #endif
     // начинаем движение вверх после касания/коллизии
-    up_after_collision_counter = 100*RestoreInitialHeightSettingFromEEPROM(); 
+    up_after_collision_counter = 100L*RestoreInitialHeightSettingFromEEPROM(); 
     // удерживаем сигнал "IP_COMPLETE"
     IP_complete_signal_hold_counter = IP_complete_signal_hold_delay;
   }; 
