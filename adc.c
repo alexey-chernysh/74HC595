@@ -221,8 +221,6 @@ signed int GetLiftMotionVelocity(signed int current_delta){
 #endif
     // начинаем движение вверх после касания/коллизии
     up_after_collision_counter = 100L*RestoreInitialHeightSettingFromEEPROM(); 
-    // удерживаем сигнал "IP_COMPLETE"
-    IP_complete_signal_hold_counter = IP_complete_signal_hold_delay;
   }; 
 
   if(up_after_collision_counter > 0) { // вверх, в течении up_after_collision_counter_limit циклов
@@ -231,6 +229,8 @@ signed int GetLiftMotionVelocity(signed int current_delta){
     if(up_after_collision_counter <= 0){
       current_lift_motion_velocity = 0; // остановить подъем после коллизии
       waiting_for_IP_signal_released = true; // переходим в ожидание снятия сигнала начального позиционирования
+      // удерживаем сигнал "IP_COMPLETE"
+      IP_complete_signal_hold_counter = IP_complete_signal_hold_delay;
     } 
   }
   

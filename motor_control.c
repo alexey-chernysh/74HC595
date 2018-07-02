@@ -94,7 +94,6 @@ void SetupMotorControl()
   * модуль val <= 127 
   ******************************************************************************
   */
-#define GATE 5
 
 void SetMotorVelocity(signed int pwm){
 
