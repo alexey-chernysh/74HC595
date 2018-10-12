@@ -117,7 +117,7 @@ static signed long down_for_plate_collision_counter = 0;
 static signed long down_for_plate_collision_counter_limit = 500000L;
 #endif
 static bool waiting_for_IP_signal_released = false;
-static const unsigned int IP_complete_signal_hold_delay = 1000;
+static const unsigned int IP_complete_signal_hold_delay = 100;
 static unsigned int IP_complete_signal_hold_counter = 0;
 
 static bool preheat = false;
@@ -242,7 +242,8 @@ signed int GetLiftMotionVelocity(signed int current_delta){
   return current_lift_motion_velocity;
 }
 
-#define GATE 2
+#define GATE 1
+#define JUMP 20
 
 #pragma vector = ADC1_EOC_vector
 __interrupt void ADC1_EOC_IRQHandler(){
@@ -262,10 +263,10 @@ __interrupt void ADC1_EOC_IRQHandler(){
 
     if( delta < GATE ){
       if( delta > (-GATE) ) delta = 0;
-      else delta = delta + GATE;
-    } else delta = delta - GATE;
+      else delta = delta - JUMP;
+    } else delta = delta + JUMP;
 
-    delta = GetLiftMotionVelocity(3*delta);  // для консольки надо <<1
+    delta = GetLiftMotionVelocity(delta);  // для консольки надо <<1
     SetMotorVelocity(delta); // вверх или вниз, со скоростью delta
     RestartADC();
   }
